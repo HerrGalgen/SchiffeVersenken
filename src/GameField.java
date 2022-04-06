@@ -9,7 +9,8 @@ public class GameField extends JPanel {
 
     private int                id   = 0;
     private GridBagConstraints cons = new GridBagConstraints();
-
+    private Playground playground;
+    private SelectShip shipSelector;
 
     GameField( GameSummary gameFrame, int id ) {
         setLayout( new GridBagLayout() );
@@ -17,8 +18,8 @@ public class GameField extends JPanel {
         setVisible( true );
         this.id = id;
 
-        SelectShip shipSelector = new SelectShip( id );
-        Playground playground = new Playground( this, gameFrame, id );
+        playground = new Playground( this, gameFrame, id );
+        shipSelector = new SelectShip( id, playground );
 
         cons.gridx = 0;
         cons.gridy = 0;
@@ -35,5 +36,13 @@ public class GameField extends JPanel {
 
     public int getId() {
         return id;
+    }
+
+    public Playground getPlayground() {
+        return playground;
+    }
+
+    public SelectShip getShipSelector() {
+        return shipSelector;
     }
 }

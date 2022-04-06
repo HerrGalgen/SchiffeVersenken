@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Creates a JPanel with only the buttons of the Game
@@ -7,38 +8,57 @@ import java.awt.*;
 
 public class Playground extends JPanel {
 
-    Playground( GameField gameField, GameSummary gameSummary, int id ) {
-        JButton[][] aButtons = new JButton[11][11];
-        setLayout( new GridLayout( aButtons.length, aButtons[0].length ) );
-        setMinimumSize( new Dimension( 550, 550 ) );
-        setVisible( true );
+    private int         charStart   = 0;
+    private JButton[][] aButtons    = new JButton[11][11];
+    private int[][]     aShips      = new int[aButtons.length-1][aButtons[0].length-1]; // 0 = default; 1 = ship; 2 = broken ship
+    private ImageIcon   mine        = new ImageIcon("pictures/mine.png");
+
+
+    Playground(GameField gameField, GameSummary gameSummary, int id) {
+        setLayout(new GridLayout(aButtons.length, aButtons[0].length));
+        setMinimumSize(new Dimension(550, 550));
+        setVisible(true);
+
+        aShips[0][0] = 1;
 
         //Declare Buttons in Array:
         for (int x = 0; x < aButtons.length; x++)
             for (int y = 0; y < aButtons[x].length; y++) {
                 aButtons[x][y] = new JButton();
-                aButtons[x][y].setActionCommand( x + "," + y );
-                aButtons[x][y].addActionListener( new Listener( gameSummary, gameField ) );
+                aButtons[x][y].setActionCommand(x + "," + y);
+                aButtons[x][y].addActionListener(new Listener(gameSummary, gameField));
             }
         //Set Description for First Row:
         for (int i = 1; i < aButtons[0].length; i++) {
-            aButtons[0][i].setText( String.valueOf( i ) );
-            aButtons[0][i].setEnabled( false );
+            aButtons[0][i].setText(String.valueOf(i));
+            aButtons[0][i].setEnabled(false);
         }
 
         //Set Description for First Cols:
         for (int i = 1; i < aButtons.length; i++) {
-            int charStart = 65;
-            aButtons[i][0].setText( Character.toString( (char) charStart + i - 1 ) );
-            aButtons[i][0].setEnabled( false );
+            charStart = 65;
+            aButtons[i][0].setText(Character.toString((char) charStart + i - 1));
+            aButtons[i][0].setEnabled(false);
         }
 
-        aButtons[0][0].setEnabled( false );
+        aButtons[0][0].setEnabled(false);
 
         //Add Buttons to the Panel:
         for (JButton[] buttons : aButtons)
             for (JButton button : buttons)
-                add( button );
+                add(button);
     }
 
+
+    public int[][] getaShips() {
+        return aShips;
+    }
+
+    public void setaShips(int[][] aShips) {
+        this.aShips = aShips;
+    }
+
+    public void destroyShip(int x, int y) {
+        aButtons[x][y].setEnabled(false);
+    }
 }
