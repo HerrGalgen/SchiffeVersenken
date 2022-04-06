@@ -1,5 +1,9 @@
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.StringTokenizer;
 
 /**
@@ -8,15 +12,26 @@ import java.util.StringTokenizer;
 
 public class Listener implements ActionListener {
 
-    GameSummary gameSummary;
-    GameField   gameField;
-    int xCord = 0;
-    int yCord = 0;
-    StringTokenizer tokenizer;
+    private GameSummary     gameSummary;
+    private GameField       gameField;
+    private int             xCord       = 0;
+    private int             yCord       = 0;
+    private StringTokenizer tokenizer;
+    private Image           img;
+    private int             id;
 
-    Listener( GameSummary gameFrame, GameField gameField ) {
+
+    Listener( GameSummary gameFrame, GameField gameField, int id ) {
         this.gameSummary = gameFrame;
         this.gameField = gameField;
+        this.id = id;
+
+        try {
+            img = ImageIO.read(getClass().getResource("pictures/mine.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
@@ -49,11 +64,15 @@ public class Listener implements ActionListener {
                 if ( gameField.getPlayground().getaShips()[xCord][yCord] == 1 ) {
 
                     gameField.getPlayground().getaShips()[xCord][yCord]++;
-                    gameField.getPlayground().destroyShip( xCord + 1, yCord + 1 );
+                    gameField.getPlayground().destroyShip( xCord, yCord);
+                    gameField.getPlayground().setButtonIcon( xCord , yCord, img );
                     System.out.println( "ship hitted" );
 
+                    if(gameField.getPlayground().isWin())
+                        System.out.println("WIN " + id);
+
                 } else {
-                    gameField.getPlayground().changeButton( xCord+1,yCord+1,false );
+                    gameField.getPlayground().changeButton( xCord,yCord,false );
                     gameSummary.changeView();
                 }
             }

@@ -43,6 +43,10 @@ public class GameSummary extends JFrame {
         player1.getPlayground().setaShips( player2.getPlayground().getaShips() );
         player2.getPlayground().setaShips( tempShips );
 
+        //Aktiviere Spielbuttons
+        player1.getPlayground().activateField();
+        player2.getPlayground().activateField();
+
         setStatus( "battle" );
 
         System.out.println("Game-Status: " + getStatus());

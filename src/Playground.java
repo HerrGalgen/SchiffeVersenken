@@ -2,6 +2,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * Creates a JPanel with only the buttons of the Game
@@ -12,14 +13,12 @@ public class Playground extends JPanel{
     private int         charStart   = 0;
     private JButton[][] aButtons    = new JButton[11][11];
     private int[][]     aShips      = new int[aButtons.length-1][aButtons[0].length-1]; // 0 = default; 1 = ship; 2 = broken ship
-    private Icon        mine        = new ImageIcon("pictures/mine.png");
-    //private Image       img         ;
 
-
-    Playground(GameField gameField, GameSummary gameSummary) {
+    Playground(GameField gameField, GameSummary gameSummary, int id) {
         setLayout(new GridLayout(aButtons.length, aButtons[0].length));
         setMinimumSize(new Dimension(600, 600));
         setVisible(true);
+
 
         aShips[0][0] = 1;
 
@@ -28,8 +27,7 @@ public class Playground extends JPanel{
             for (int y = 0; y < aButtons[x].length; y++) {
                 aButtons[x][y] = new JButton();
                 aButtons[x][y].setActionCommand(x + "," + y);
-                aButtons[x][y].addActionListener(new Listener(gameSummary, gameField));
-                aButtons[x][y].setIcon( mine );
+                aButtons[x][y].addActionListener(new Listener(gameSummary, gameField, id));
             }
         //Set Description for First Row:
         for (int i = 1; i < aButtons[0].length; i++) {
@@ -52,7 +50,27 @@ public class Playground extends JPanel{
                 add(button);
     }
 
+    //Other useful function:
 
+    public void activateField() {
+        for(int x = 1; x < aButtons.length; x++)
+            for(int y = 1; y < aButtons[x].length; y++)
+                aButtons[x][y].setEnabled( true );
+    }
+
+    public boolean isWin() {
+        for(int[] rows : aShips)
+            if(contains( rows,1 ))
+                return false;
+
+        return true;
+    }
+
+    public boolean contains(int[] arr, int key) {
+        return Arrays.stream(arr).anyMatch( i -> i == key);
+    }
+
+    //Getter - Setter:
     public int[][] getaShips() {
         return aShips;
     }
@@ -67,11 +85,15 @@ public class Playground extends JPanel{
     }
 
     public void changeButton(int x, int y, boolean status) {
-        aButtons[x][y].setEnabled( status );
+        aButtons[x+1][y+1].setEnabled( status );
     }
 
 
     public void destroyShip(int x, int y) {
-        aButtons[x][y].setEnabled(false);
+        aButtons[x+1][y+1].setEnabled(false);
+    }
+
+    public void setButtonIcon(int x, int y, Image img) {
+        aButtons[x+1][y+1].setIcon(new ImageIcon(img));
     }
 }

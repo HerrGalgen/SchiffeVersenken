@@ -19,9 +19,9 @@ public class GameField extends JPanel {
         setVisible( true );
 
         bNext.setActionCommand( "next" );
-        bNext.addActionListener( new Listener( gameFrame, this ) );
+        bNext.addActionListener( new Listener( gameFrame, this, id ) );
 
-        playground = new Playground( this, gameFrame);
+        playground = new Playground( this, gameFrame, id);
         shipSelector = new SelectShip( id );
 
         cons.gridx = 0;
