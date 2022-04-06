@@ -1,22 +1,24 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+import java.io.IOException;
 
 /**
  * Creates a JPanel with only the buttons of the Game
  */
 
-public class Playground extends JPanel {
+public class Playground extends JPanel{
 
     private int         charStart   = 0;
     private JButton[][] aButtons    = new JButton[11][11];
     private int[][]     aShips      = new int[aButtons.length-1][aButtons[0].length-1]; // 0 = default; 1 = ship; 2 = broken ship
-    private ImageIcon   mine        = new ImageIcon("pictures/mine.png");
+    private Icon        mine        = new ImageIcon("pictures/mine.png");
+    //private Image       img         ;
 
 
-    Playground(GameField gameField, GameSummary gameSummary, int id) {
+    Playground(GameField gameField, GameSummary gameSummary) {
         setLayout(new GridLayout(aButtons.length, aButtons[0].length));
-        setMinimumSize(new Dimension(550, 550));
+        setMinimumSize(new Dimension(600, 600));
         setVisible(true);
 
         aShips[0][0] = 1;
@@ -27,6 +29,7 @@ public class Playground extends JPanel {
                 aButtons[x][y] = new JButton();
                 aButtons[x][y].setActionCommand(x + "," + y);
                 aButtons[x][y].addActionListener(new Listener(gameSummary, gameField));
+                aButtons[x][y].setIcon( mine );
             }
         //Set Description for First Row:
         for (int i = 1; i < aButtons[0].length; i++) {
@@ -57,6 +60,16 @@ public class Playground extends JPanel {
     public void setaShips(int[][] aShips) {
         this.aShips = aShips;
     }
+
+    public void placeShip(int x, int y) {
+        aShips[x][y] = 1;
+        aButtons[x+1][y+1].setEnabled( false );
+    }
+
+    public void changeButton(int x, int y, boolean status) {
+        aButtons[x][y].setEnabled( status );
+    }
+
 
     public void destroyShip(int x, int y) {
         aButtons[x][y].setEnabled(false);

@@ -8,8 +8,8 @@ import java.awt.*;
 
 public class SelectShip extends JPanel {
 
-    SelectShip( int id, Playground playground) {
-        setMinimumSize( new Dimension( 550, 50 ) );
+    SelectShip( int id) {
+        setMinimumSize( new Dimension( 600, 50 ) );
         add( new JLabel( String.valueOf( id ) ) );
     }
 
