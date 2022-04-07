@@ -57,7 +57,7 @@ public class Listener implements ActionListener {
 
                     gameField.getPlayground().getaShips()[xCord][yCord]++;
                     gameField.getPlayground().destroyShip( xCord, yCord);
-                    gameField.getPlayground().setButtonIcon( xCord , yCord, "mine" );
+                    gameField.getPlayground().setButtonIcon( xCord , yCord, "bombedBoat" );
 
                     System.out.println( "ship hitted" );
 
@@ -65,6 +65,7 @@ public class Listener implements ActionListener {
                         System.out.println("WIN " + id);
 
                 } else {
+                    gameField.getPlayground().setButtonIcon( xCord, yCord, "mine" );
                     gameField.getPlayground().changeButton( xCord,yCord,false );
                     gameSummary.changeView();
                 }

@@ -102,8 +102,9 @@ public class Playground extends JPanel{
     public void setButtonIcon(int x, int y, String iconType) {
         try {
             switch (iconType) {
-                case "mine" -> aButtons[x + 1][y + 1].setIcon( new ImageIcon( ImageIO.read( getClass().getResource( "/pictures/mine.png" ) ) ) );
-                case "ship" -> aButtons[x + 1][y + 1].setIcon( new ImageIcon( ImageIO.read( getClass().getResource( "/pictures/ship.png" ) ) ) );
+                case "bombedBoat" -> aButtons[x + 1][y + 1].setIcon( new ImageIcon( ImageIO.read( getClass().getResource( "/pictures/bombedBoat.png" ) ) ) );
+                case "ship"       -> aButtons[x + 1][y + 1].setIcon( new ImageIcon( ImageIO.read( getClass().getResource( "/pictures/ship.png" ) ) ) );
+                case "mine"       -> aButtons[x + 1][y + 1].setIcon( new ImageIcon( ImageIO.read( getClass().getResource( "/pictures/mine.png" ) ) ) );
             }
         } catch (IOException e) {
             e.printStackTrace();
