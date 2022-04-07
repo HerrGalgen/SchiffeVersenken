@@ -7,8 +7,8 @@ import java.awt.*;
 
 public class GameSummary extends JFrame {
 
-    private final GameField player1     = new GameField( this, 1 );
-    private final GameField player2     = new GameField( this, 2 );
+    private GameField player1     = new GameField( this, 1 );
+    private GameField player2     = new GameField( this, 2 );
     private       int       clickCount  = 0;
     private       String    status      = "setShips";
 

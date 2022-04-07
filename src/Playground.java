@@ -19,9 +19,6 @@ public class Playground extends JPanel{
         setMinimumSize(new Dimension(600, 600));
         setVisible(true);
 
-
-        aShips[0][0] = 1;
-
         //Declare Buttons in Array:
         for (int x = 0; x < aButtons.length; x++)
             for (int y = 0; y < aButtons[x].length; y++) {
