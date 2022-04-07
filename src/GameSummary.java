@@ -9,6 +9,8 @@ public class GameSummary extends JFrame {
 
     private GameField player1     = new GameField( this, 1 );
     private GameField player2     = new GameField( this, 2 );
+    private PausePanel pausePanel = new PausePanel();
+
     private       int       clickCount  = 0;
     private       String    status      = "setShips";
 
@@ -17,6 +19,7 @@ public class GameSummary extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         add( player1 );
         add( player2 );
+        add( pausePanel );
     }
 
     public void init() {
@@ -24,16 +27,36 @@ public class GameSummary extends JFrame {
         setMinimumSize( new Dimension( 600, 600 ) );
         setVisible( true );
 
-        player2.setVisible( false );
         player1.setVisible( true );
+        player2.setVisible( false );
+        pausePanel.setVisible( false );
 
-        player1.setBackground( Color.GREEN );
-        player2.setBackground( Color.RED );
+        pauseGame();
     }
 
     public void changeView() {
         player1.setVisible( !player1.isVisible() );
         player2.setVisible( !player2.isVisible() );
+    }
+
+    public void pauseGame() {
+
+        player1.setVisible( false );
+        player2.setVisible( false );
+        pausePanel.setVisible( true );
+    }
+
+    public void resumeGame(int nextID) {
+
+        if(nextID == 1) {
+            player1.setVisible( true );
+            player2.setVisible( false );
+            pausePanel.setVisible( false );
+        } else if (nextID == 2) {
+            player1.setVisible( false );
+            player2.setVisible( true );
+            pausePanel.setVisible( false );
+        }
     }
 
     public void startGame() {

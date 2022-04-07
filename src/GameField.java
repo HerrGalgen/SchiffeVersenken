@@ -1,11 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 
 /**
  * Creates a JPanel which includes an Playground and an Shipselector.
  */
-
 public class GameField extends JPanel {
 
     private GridBagConstraints  cons            = new GridBagConstraints();
@@ -16,7 +14,7 @@ public class GameField extends JPanel {
     GameField( GameSummary gameFrame, int id ) {
         setLayout( new GridBagLayout() );
         setMinimumSize( new Dimension( gameFrame.getWidth(), gameFrame.getHeight() ) );
-        setVisible( true );
+       // setVisible( true );
 
         bNext.setActionCommand( "next" );
         bNext.addActionListener( new Listener( gameFrame, this, id ) );

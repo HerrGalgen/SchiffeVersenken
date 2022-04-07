@@ -1,8 +1,5 @@
-import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.StringTokenizer;
 
 /**
@@ -23,6 +20,9 @@ public class Listener implements ActionListener {
         this.gameSummary = gameFrame;
         this.gameField = gameField;
         this.id = id;
+    }
+
+    Listener() {
 
     }
 
@@ -30,13 +30,16 @@ public class Listener implements ActionListener {
     public void actionPerformed( ActionEvent e ) {
 
         if ( e.getActionCommand().equals( "next" ) ) {
-            gameSummary.setClickCount( gameSummary.getClickCount()+1 );
+            gameSummary.setClickCount( gameSummary.getClickCount() + 1 );
             System.out.println( "next" );
             gameField.removeNext();
             gameSummary.changeView();
-            if(gameSummary.getClickCount()==2)
+            if ( gameSummary.getClickCount() == 2 )
                 gameSummary.startGame();
-
+        }else if(e.getActionCommand().equals( "resP1" )) {
+            System.out.println( "resP1" );
+        }else if(e.getActionCommand().equals( "resP2" )) {
+            System.out.println("resP2");
         } else {
 
             tokenizer = new StringTokenizer( e.getActionCommand(), "," );
