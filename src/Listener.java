@@ -1,5 +1,4 @@
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,7 +16,6 @@ public class Listener implements ActionListener {
     private int             xCord       = 0;
     private int             yCord       = 0;
     private StringTokenizer tokenizer;
-    private Image           img;
     private int             id;
 
 
@@ -25,12 +23,6 @@ public class Listener implements ActionListener {
         this.gameSummary = gameFrame;
         this.gameField = gameField;
         this.id = id;
-
-        try {
-            img = ImageIO.read(getClass().getResource("pictures/mine.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
     }
 
@@ -65,7 +57,8 @@ public class Listener implements ActionListener {
 
                     gameField.getPlayground().getaShips()[xCord][yCord]++;
                     gameField.getPlayground().destroyShip( xCord, yCord);
-                    gameField.getPlayground().setButtonIcon( xCord , yCord, img );
+                    gameField.getPlayground().setButtonIcon( xCord , yCord, "mine" );
+
                     System.out.println( "ship hitted" );
 
                     if(gameField.getPlayground().isWin())

@@ -37,6 +37,11 @@ public class GameSummary extends JFrame {
     }
 
     public void startGame() {
+
+        //Markiere eigene Schiffe zur übersicht:
+        player1.getPlayground().markAllOwnShips();
+        player2.getPlayground().markAllOwnShips();
+
         //Swap Ship-arrays, so enemy-Ships can be destroyed.
         int[][] tempShips = player1.getPlayground().getaShips();
 

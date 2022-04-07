@@ -13,11 +13,15 @@ public class Playground extends JPanel{
     private int         charStart   = 0;
     private JButton[][] aButtons    = new JButton[11][11];
     private int[][]     aShips      = new int[aButtons.length-1][aButtons[0].length-1]; // 0 = default; 1 = ship; 2 = broken ship
+    private GameSummary gameSummary;
+
 
     Playground(GameField gameField, GameSummary gameSummary, int id) {
         setLayout(new GridLayout(aButtons.length, aButtons[0].length));
         setMinimumSize(new Dimension(600, 600));
         setVisible(true);
+
+        this.gameSummary = gameSummary;
 
         //Declare Buttons in Array:
         for (int x = 0; x < aButtons.length; x++)
@@ -47,8 +51,10 @@ public class Playground extends JPanel{
                 add(button);
     }
 
+    //
     //Other useful function:
-
+    //
+    
     public void activateField() {
         for(int x = 1; x < aButtons.length; x++)
             for(int y = 1; y < aButtons[x].length; y++)
@@ -67,7 +73,10 @@ public class Playground extends JPanel{
         return Arrays.stream(arr).anyMatch( i -> i == key);
     }
 
+    //
     //Getter - Setter:
+    //
+    
     public int[][] getaShips() {
         return aShips;
     }
@@ -90,7 +99,26 @@ public class Playground extends JPanel{
         aButtons[x+1][y+1].setEnabled(false);
     }
 
-    public void setButtonIcon(int x, int y, Image img) {
-        aButtons[x+1][y+1].setIcon(new ImageIcon(img));
+    public void setButtonIcon(int x, int y, String iconType) {
+        try {
+            switch (iconType) {
+                case "mine" -> aButtons[x + 1][y + 1].setIcon( new ImageIcon( ImageIO.read( getClass().getResource( "/pictures/mine.png" ) ) ) );
+                case "ship" -> aButtons[x + 1][y + 1].setIcon( new ImageIcon( ImageIO.read( getClass().getResource( "/pictures/ship.png" ) ) ) );
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        gameSummary.pack();
+
+    }
+
+    public void markAllOwnShips() {
+
+        for ( int x = 1; x < aButtons.length; x++ )
+            for ( int y = 1; y < aButtons[x].length; y++ )
+                if(aShips[x-1][y-1] == 1)
+                    setButtonIcon( x-1,y-1,"ship" );
+
     }
 }
