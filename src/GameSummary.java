@@ -31,7 +31,6 @@ public class GameSummary extends JFrame {
         player2.setVisible( false );
         pausePanel.setVisible( false );
 
-        pauseGame();
     }
 
     public void pauseGame() {
