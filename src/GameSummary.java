@@ -9,7 +9,7 @@ public class GameSummary extends JFrame {
 
     private GameField player1     = new GameField( this, 1 );
     private GameField player2     = new GameField( this, 2 );
-    private PausePanel pausePanel = new PausePanel();
+    private PausePanel pausePanel = new PausePanel(this);
 
     private       int       clickCount  = 0;
     private       String    status      = "setShips";
@@ -32,11 +32,6 @@ public class GameSummary extends JFrame {
         pausePanel.setVisible( false );
 
         pauseGame();
-    }
-
-    public void changeView() {
-        player1.setVisible( !player1.isVisible() );
-        player2.setVisible( !player2.isVisible() );
     }
 
     public void pauseGame() {

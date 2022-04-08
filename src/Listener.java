@@ -16,14 +16,14 @@ public class Listener implements ActionListener {
     private int             id;
 
 
-    Listener( GameSummary gameFrame, GameField gameField, int id ) {
-        this.gameSummary = gameFrame;
+    Listener( GameSummary gameSummary, GameField gameField, int id ) {
+        this.gameSummary = gameSummary;
         this.gameField = gameField;
         this.id = id;
     }
 
-    Listener() {
-
+    Listener( GameSummary gameSummary) {
+        this.gameSummary = gameSummary;
     }
 
     @Override
@@ -33,13 +33,13 @@ public class Listener implements ActionListener {
             gameSummary.setClickCount( gameSummary.getClickCount() + 1 );
             System.out.println( "next" );
             gameField.removeNext();
-            gameSummary.changeView();
+            gameSummary.pauseGame();
             if ( gameSummary.getClickCount() == 2 )
                 gameSummary.startGame();
         }else if(e.getActionCommand().equals( "resP1" )) {
-            System.out.println( "resP1" );
+            gameSummary.resumeGame(1);
         }else if(e.getActionCommand().equals( "resP2" )) {
-            System.out.println("resP2");
+            gameSummary.resumeGame(2);
         } else {
 
             tokenizer = new StringTokenizer( e.getActionCommand(), "," );
@@ -70,7 +70,7 @@ public class Listener implements ActionListener {
                 } else {
                     gameField.getPlayground().setButtonIcon( xCord, yCord, "mine" );
                     gameField.getPlayground().changeButton( xCord,yCord,false );
-                    gameSummary.changeView();
+                    gameSummary.pauseGame();
                 }
             }
         }

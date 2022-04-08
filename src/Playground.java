@@ -28,7 +28,7 @@ public class Playground extends JPanel{
             for (int y = 0; y < aButtons[x].length; y++) {
                 aButtons[x][y] = new JButton();
                 aButtons[x][y].setActionCommand(x + "," + y);
-                aButtons[x][y].addActionListener(new Listener(gameSummary, gameField, id));
+                aButtons[x][y].addActionListener(gameField.getListener());
             }
         //Set Description for First Row:
         for (int i = 1; i < aButtons[0].length; i++) {

@@ -10,16 +10,19 @@ public class GameField extends JPanel {
     private Playground          playground;
     private SelectShip          shipSelector;
     private JButton             bNext           = new JButton("NEXT");
+    private Listener            listener;
 
-    GameField( GameSummary gameFrame, int id ) {
+
+    GameField( GameSummary gameSummary, int id ) {
         setLayout( new GridBagLayout() );
-        setMinimumSize( new Dimension( gameFrame.getWidth(), gameFrame.getHeight() ) );
+        setMinimumSize( new Dimension( gameSummary.getWidth(), gameSummary.getHeight() ) );
        // setVisible( true );
+        listener = new Listener(gameSummary,this,id);
 
         bNext.setActionCommand( "next" );
-        bNext.addActionListener( new Listener( gameFrame, this, id ) );
+        bNext.addActionListener( listener );
 
-        playground = new Playground( this, gameFrame, id);
+        playground = new Playground( this, gameSummary, id);
         shipSelector = new SelectShip( id );
 
         cons.gridx = 0;
@@ -40,6 +43,10 @@ public class GameField extends JPanel {
 
     public Playground getPlayground() {
         return playground;
+    }
+
+    public Listener getListener() {
+        return listener;
     }
 
     public void removeNext() {
