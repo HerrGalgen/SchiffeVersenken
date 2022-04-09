@@ -30,17 +30,18 @@ public class Listener implements ActionListener {
     public void actionPerformed( ActionEvent e ) {
 
         if ( e.getActionCommand().equals( "next" ) ) {
+
             gameSummary.setClickCount( gameSummary.getClickCount() + 1 );
             System.out.println( "next" );
             gameField.removeNext();
-            gameSummary.pauseGame();
+            gameSummary.pauseGame(id);
+
             if ( gameSummary.getClickCount() == 2 )
                 gameSummary.startGame();
-        }else if(e.getActionCommand().equals( "resP1" )) {
-            gameSummary.resumeGame(1);
-        }else if(e.getActionCommand().equals( "resP2" )) {
-            gameSummary.resumeGame(2);
-        } else {
+
+        }else if(e.getActionCommand().equals( "resume" ))
+            gameSummary.resumeGame();
+        else {
 
             tokenizer = new StringTokenizer( e.getActionCommand(), "," );
             xCord = Integer.parseInt( tokenizer.nextToken() ) - 1;
@@ -70,7 +71,7 @@ public class Listener implements ActionListener {
                 } else {
                     gameField.getPlayground().setButtonIcon( xCord, yCord, "mine" );
                     gameField.getPlayground().changeButton( xCord,yCord,false );
-                    gameSummary.pauseGame();
+                    gameSummary.pauseGame(id);
                 }
             }
         }
