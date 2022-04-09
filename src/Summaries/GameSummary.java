@@ -1,10 +1,14 @@
+package Summaries;
+
+import Panels.GameField;
+import Panels.PausePanel;
+
 import javax.swing.*;
 import java.awt.*;
 
 /**
- * The whole GameSummary. It creates the two Players and switches between them.
+ * The whole Summaries.GameSummary. It creates the two Players and switches between them.
  */
-
 public class GameSummary extends JFrame {
 
     private GameField player1     = new GameField( this, 1 );
@@ -15,6 +19,9 @@ public class GameSummary extends JFrame {
     private       int       clickCount  = 0;
     private       String    status      = "setShips";
 
+    /**
+     *
+     */
     GameSummary() {
         setLayout( new CardLayout() );
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -23,6 +30,9 @@ public class GameSummary extends JFrame {
         add( pausePanel );
     }
 
+    /**
+     * initialise the Game.
+     */
     public void init() {
         System.out.println("Game-Status: " + getStatus());
         setMinimumSize( new Dimension( 600, 600 ) );
@@ -34,6 +44,11 @@ public class GameSummary extends JFrame {
 
     }
 
+    /**
+     * @param pausedPlayer
+     * Pauses the Game for Playerchange.
+     * Saves the id of the Player who paused the game.
+     */
     public void pauseGame(int pausedPlayer) {
 
         this.pausedPlayer = pausedPlayer;
@@ -43,6 +58,10 @@ public class GameSummary extends JFrame {
         pausePanel.setVisible( true );
     }
 
+
+    /**
+     * Resume game to next Player.
+     */
     public void resumeGame() {
 
         if(pausedPlayer == 2) { //Player 2 paused game:
@@ -57,6 +76,10 @@ public class GameSummary extends JFrame {
         }
     }
 
+
+    /**
+     * Starts the real Game after all own ships are set.
+     */
     public void startGame() {
 
         //Markiere eigene Schiffe zur übersicht:

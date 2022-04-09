@@ -1,3 +1,8 @@
+package Panels;
+
+import Panels.*;
+import Summaries.*;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -16,6 +21,11 @@ public class Playground extends JPanel{
     private GameSummary gameSummary;
 
 
+    /**
+     * @param gameField current Panels.GameField.
+     * @param gameSummary Summaries.GameSummary.
+     * @param id PlayerID.
+     */
     Playground(GameField gameField, GameSummary gameSummary, int id) {
         setLayout(new GridLayout(aButtons.length, aButtons[0].length));
         setMinimumSize(new Dimension(600, 600));

@@ -1,14 +1,19 @@
+package Listeners;
+
+import Panels.GameField;
+import Summaries.GameSummary;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.StringTokenizer;
 
 /**
- * All Listener for the GameField e.g. for clicking one Field.
+ * All Listeners.Listener for the Panels.GameField e.g. for clicking one Field.
  */
 
-public class Listener implements ActionListener {
+public class ButtonListener implements ActionListener {
 
-    private GameSummary     gameSummary;
+    private GameSummary gameSummary;
     private GameField       gameField;
     private int             xCord       = 0;
     private int             yCord       = 0;
@@ -16,16 +21,21 @@ public class Listener implements ActionListener {
     private int             id;
 
 
-    Listener( GameSummary gameSummary, GameField gameField, int id ) {
+    /**
+     * @param gameSummary The Summaries.GameSummary
+     * @param gameField The current Panels.GameField.
+     * @param id The current PlayerID.
+     * Start all other Listeners.
+     */
+    public ButtonListener(GameSummary gameSummary, GameField gameField, int id) {
         this.gameSummary = gameSummary;
         this.gameField = gameField;
         this.id = id;
     }
 
-    Listener( GameSummary gameSummary) {
-        this.gameSummary = gameSummary;
-    }
-
+    /**
+     * @param e ActionEvent
+     */
     @Override
     public void actionPerformed( ActionEvent e ) {
 
@@ -39,9 +49,7 @@ public class Listener implements ActionListener {
             if ( gameSummary.getClickCount() == 2 )
                 gameSummary.startGame();
 
-        }else if(e.getActionCommand().equals( "resume" ))
-            gameSummary.resumeGame();
-        else {
+        }else {
 
             tokenizer = new StringTokenizer( e.getActionCommand(), "," );
             xCord = Integer.parseInt( tokenizer.nextToken() ) - 1;

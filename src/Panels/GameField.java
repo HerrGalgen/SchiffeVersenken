@@ -1,23 +1,32 @@
+package Panels;
+
+import Listeners.*;
+import Summaries.*;
+
 import javax.swing.*;
 import java.awt.*;
 
 /**
- * Creates a JPanel which includes an Playground and an Shipselector.
+ * Creates a JPanel which includes an Panels.Playground and an Shipselector.
  */
 public class GameField extends JPanel {
 
     private GridBagConstraints  cons            = new GridBagConstraints();
-    private Playground          playground;
-    private SelectShip          shipSelector;
+    private Playground playground;
+    private SelectShip shipSelector;
     private JButton             bNext           = new JButton("NEXT");
-    private Listener            listener;
+    private ButtonListener listener;
 
 
-    GameField( GameSummary gameSummary, int id ) {
+    /**
+     * @param gameSummary The Summaries.GameSummary
+     * @param id The current PlayerID.
+     */
+    public GameField(GameSummary gameSummary, int id) {
         setLayout( new GridBagLayout() );
         setMinimumSize( new Dimension( gameSummary.getWidth(), gameSummary.getHeight() ) );
        // setVisible( true );
-        listener = new Listener(gameSummary,this,id);
+        listener = new ButtonListener(gameSummary,this,id);
 
         bNext.setActionCommand( "next" );
         bNext.addActionListener( listener );
@@ -41,14 +50,23 @@ public class GameField extends JPanel {
         add(bNext, cons);
     }
 
+    /**
+     * @return current Panels.Playground.
+     */
     public Playground getPlayground() {
         return playground;
     }
 
-    public Listener getListener() {
+    /**
+     * @return current Listeners.Listener.
+     */
+    public ButtonListener getListener() {
         return listener;
     }
 
+    /**
+     * Removes the Next button from the player.
+     */
     public void removeNext() {
         remove( bNext );
     }
