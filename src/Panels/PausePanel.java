@@ -1,13 +1,11 @@
 package Panels;
 import Summaries.*;
-import Listeners.*;
+import GameIO.*;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class PausePanel extends JPanel {
-
-    private JButton     resume        = new JButton( "Resume" );
 
     /**
      * @param gameSummary Summaries.GameSummary.
@@ -17,10 +15,11 @@ public class PausePanel extends JPanel {
         setVisible( true );
 
         //Settings p1:
+        JButton resume = new JButton( "Resume" );
         resume.addActionListener( new PauseListener(gameSummary) );
         resume.setActionCommand( "resume" );
 
-        add(resume);
+        add( resume );
     }
 
 }

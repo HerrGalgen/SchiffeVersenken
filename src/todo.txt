@@ -1,2 +1,0 @@
-TODO: Config file
-TODO: Autoresize windows if button gets background.

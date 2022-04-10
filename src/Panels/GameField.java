@@ -1,6 +1,6 @@
 package Panels;
 
-import Listeners.*;
+import GameIO.*;
 import Summaries.*;
 
 import javax.swing.*;
@@ -11,11 +11,9 @@ import java.awt.*;
  */
 public class GameField extends JPanel {
 
-    private GridBagConstraints  cons            = new GridBagConstraints();
-    private Playground playground;
-    private SelectShip shipSelector;
-    private JButton             bNext           = new JButton("NEXT");
-    private ButtonListener listener;
+    private final Playground         playground;
+    private final JButton            bNext = new JButton("NEXT");
+    private final ButtonListener     listener;
 
 
     /**
@@ -32,8 +30,9 @@ public class GameField extends JPanel {
         bNext.addActionListener( listener );
 
         playground = new Playground( this, gameSummary, id);
-        shipSelector = new SelectShip( id );
+        SelectShip shipSelector = new SelectShip( id );
 
+        GridBagConstraints cons = new GridBagConstraints();
         cons.gridx = 0;
         cons.gridy = 0;
 
@@ -47,7 +46,7 @@ public class GameField extends JPanel {
         add( shipSelector, cons );
 
         cons.gridy++;
-        add(bNext, cons);
+        add(bNext, cons );
     }
 
     /**
@@ -58,7 +57,7 @@ public class GameField extends JPanel {
     }
 
     /**
-     * @return current Listeners.Listener.
+     * @return current GameIO.Listener.
      */
     public ButtonListener getListener() {
         return listener;

@@ -1,4 +1,4 @@
-package Listeners;
+package GameIO;
 
 import Panels.GameField;
 import Summaries.GameSummary;
@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.StringTokenizer;
 
 /**
- * All Listeners.Listener for the Panels.GameField e.g. for clicking one Field.
+ * All GameIO.Listener for the Panels.GameField e.g. for clicking one Field.
  */
 
 public class ButtonListener implements ActionListener {
@@ -25,7 +25,7 @@ public class ButtonListener implements ActionListener {
      * @param gameSummary The Summaries.GameSummary
      * @param gameField The current Panels.GameField.
      * @param id The current PlayerID.
-     * Start all other Listeners.
+     * Start all other GameIO.
      */
     public ButtonListener(GameSummary gameSummary, GameField gameField, int id) {
         this.gameSummary = gameSummary;
