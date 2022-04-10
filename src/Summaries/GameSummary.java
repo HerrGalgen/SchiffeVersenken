@@ -1,20 +1,22 @@
 package Summaries;
 
-import Panels.GameField;
-import Panels.PausePanel;
+import GameIO.*;
+import Panels.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Properties;
 
 /**
  * The whole Summaries.GameSummary. It creates the two Players and switches between them.
  */
 public class GameSummary extends JFrame {
 
-    private GameField player1     = new GameField( this, 1 );
-    private GameField player2     = new GameField( this, 2 );
-    private PausePanel pausePanel = new PausePanel(this);
-    private int        pausedPlayer = 0;
+    private final GameField player1;
+    private final GameField player2;
+    private final PausePanel pausePanel;
+    private       int        pausedPlayer = 0;
+    private final Properties properties;
 
     private       int       clickCount  = 0;
     private       String    status      = "setShips";
@@ -25,9 +27,20 @@ public class GameSummary extends JFrame {
     GameSummary() {
         setLayout( new CardLayout() );
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        //Set Properties from game:
+        properties = new PropertyReader().getProperties();
+
+        //Initialisiere Panels + Add
+        player1     = new GameField( this, 1 );
+        player2     = new GameField( this, 2 );
+        pausePanel = new PausePanel(this);
+
         add( player1 );
         add( player2 );
         add( pausePanel );
+
+
     }
 
     /**
@@ -117,5 +130,9 @@ public class GameSummary extends JFrame {
 
     public void setStatus( String status ) {
         this.status = status;
+    }
+
+    public String getProperty( String prop) {
+        return properties.getProperty( prop );
     }
 }

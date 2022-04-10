@@ -1,6 +1,6 @@
 package Panels;
 
-import Listeners.*;
+import GameIO.*;
 import Summaries.*;
 
 import javax.swing.*;
@@ -58,7 +58,7 @@ public class GameField extends JPanel {
     }
 
     /**
-     * @return current Listeners.Listener.
+     * @return current GameIO.Listener.
      */
     public ButtonListener getListener() {
         return listener;

@@ -16,8 +16,8 @@ import java.util.Arrays;
 public class Playground extends JPanel{
 
     private int         charStart   = 0;
-    private JButton[][] aButtons    = new JButton[11][11];
-    private int[][]     aShips      = new int[aButtons.length-1][aButtons[0].length-1]; // 0 = default; 1 = ship; 2 = broken ship
+    private JButton[][] aButtons;
+    private int[][]     aShips;  // 0 = default; 1 = ship; 2 = broken ship
     private GameSummary gameSummary;
 
 
@@ -27,11 +27,15 @@ public class Playground extends JPanel{
      * @param id PlayerID.
      */
     Playground(GameField gameField, GameSummary gameSummary, int id) {
+
+        aButtons = new JButton[Integer.parseInt( gameSummary.getProperty( "gridx" ) )+1 ][Integer.parseInt( gameSummary.getProperty( "gridy" ) )+1];
+        aShips      = new int[aButtons.length-1][aButtons[0].length-1];
+
+        this.gameSummary = gameSummary;
+
         setLayout(new GridLayout(aButtons.length, aButtons[0].length));
         setMinimumSize(new Dimension(600, 600));
         setVisible(true);
-
-        this.gameSummary = gameSummary;
 
         //Declare Buttons in Array:
         for (int x = 0; x < aButtons.length; x++)
