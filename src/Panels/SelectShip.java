@@ -128,11 +128,13 @@ public class SelectShip extends JPanel {
         return false;
     }
 
-    public void switchToggleText() {
-        if(toggle.getText().equals("Horizontal"))
-            toggle.setText("Vertikal");
+    public void toggleSwitch() {
+        if ( toggle.getText().equals( "Horizontal" ) )
+            toggle.setText( "Vertikal" );
         else
-            toggle.setText("Horizontal");
+            toggle.setText( "Horizontal" );
+
+        setHorizontal( !isHorizontal() );
 
     }
 

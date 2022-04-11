@@ -21,8 +21,7 @@ public class HVListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("toggle")){
-            selectShip.switchToggleText();
-            selectShip.setHorizontal(!selectShip.isHorizontal());
+            selectShip.toggleSwitch();
         }
 
     }

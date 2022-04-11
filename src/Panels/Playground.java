@@ -1,7 +1,6 @@
 package Panels;
 
-import Panels.*;
-import Summaries.*;
+import Summaries.GameSummary;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -14,23 +13,23 @@ import java.util.Objects;
  * Creates a JPanel with only the buttons of the Game
  */
 
-public class Playground extends JPanel{
+public class Playground extends JPanel {
 
-    private int         charStart   = 0;
-    private JButton[][] aButtons    = new JButton[11][11];
-    private int[][]     aShips      = new int[aButtons.length-1][aButtons[0].length-1]; // 0 = default; 1 = ship; 2 = broken ship
-    private GameSummary gameSummary;
-    private GameField gameField;
+    private final JButton[][] aButtons  = new JButton[11][11];
+    private final GameSummary gameSummary;
+    private final GameField   gameField;
+    private       int         charStart = 0;
+    private       int[][]     aShips    = new int[aButtons.length - 1][aButtons[0].length - 1]; // 0 = default; 1 = ship; 2 = broken ship
 
 
     /**
-     * @param gameField current Panels.GameField.
+     * @param gameField   current Panels.GameField.
      * @param gameSummary Summaries.GameSummary.
-     * @param id PlayerID.
+     * @param id          PlayerID.
      */
-    Playground(GameField gameField, GameSummary gameSummary, int id) {
-        setLayout(new GridLayout(aButtons.length, aButtons[0].length));
-        setMinimumSize(new Dimension(600, 600));
+    Playground( GameField gameField, GameSummary gameSummary, int id ) {
+        setLayout( new GridLayout( aButtons.length, aButtons[0].length ) );
+        setMinimumSize( new Dimension( 600, 600 ) );
         setVisible(true);
 
         this.gameSummary = gameSummary;
@@ -101,24 +100,24 @@ public class Playground extends JPanel{
     public void placeShip(int x, int y, int shipSize) {
 
         if( gameField.getShipSelector().isHorizontal()) {
-            if (x + shipSize < aShips[y].length + 1) {
+            if ( x + shipSize < aShips.length + 1 ) {
                 for (int i = 0; i < shipSize; i++) {
-                    System.out.println(x + i + " " + y + " ship set");
+                    System.out.println( x + i + " " + y + " ship set" );
                     aShips[y][x] = 1;
-                    aButtons[y + 1][x + 1].setEnabled(false);
+                    aButtons[y + 1][x + 1].setEnabled( false );
                     x++;
                 }
-                gameField.getShipSelector().removeShipCount(shipSize);
+                gameField.getShipSelector().removeShipCount( shipSize );
             }
-        }else {
-            if (x + shipSize < aShips.length + 1) {
-                for (int i = 0; i < shipSize; i++) {
-                    System.out.println(x + i + " " + y + " ship set");
+        } else {
+            if ( (y + 1 - shipSize) >= 0 ) {
+                for (int i = shipSize; i > 0; i--) {
+                    System.out.println( x + " " + (y + i) + " ship set" );
                     aShips[y][x] = 1;
-                    aButtons[y + 1][x + 1].setEnabled(false);
+                    aButtons[y + 1][x + 1].setEnabled( false );
                     y--;
                 }
-                gameField.getShipSelector().removeShipCount(shipSize);
+                gameField.getShipSelector().removeShipCount( shipSize );
             }
         }
         markAllOwnShips();
