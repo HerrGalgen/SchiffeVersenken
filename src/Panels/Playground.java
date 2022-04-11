@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * Creates a JPanel with only the buttons of the Game
@@ -99,14 +100,26 @@ public class Playground extends JPanel{
 
     public void placeShip(int x, int y, int shipSize) {
 
-        if(x+shipSize < aShips.length+1) {
-            for (int i = 0; i < shipSize; i++) {
-                System.out.println(x + i + " " + y + " ship set");
-                aShips[y][x] = 1;
-                aButtons[y + 1][x + 1].setEnabled(false);
-                x++;
+        if( gameField.getShipSelector().isHorizontal()) {
+            if (x + shipSize < aShips[y].length + 1) {
+                for (int i = 0; i < shipSize; i++) {
+                    System.out.println(x + i + " " + y + " ship set");
+                    aShips[y][x] = 1;
+                    aButtons[y + 1][x + 1].setEnabled(false);
+                    x++;
+                }
+                gameField.getShipSelector().removeShipCount(shipSize);
             }
-            gameField.getShipSelector().removeShipCount(shipSize);
+        }else {
+            if (x + shipSize < aShips.length + 1) {
+                for (int i = 0; i < shipSize; i++) {
+                    System.out.println(x + i + " " + y + " ship set");
+                    aShips[y][x] = 1;
+                    aButtons[y + 1][x + 1].setEnabled(false);
+                    y--;
+                }
+                gameField.getShipSelector().removeShipCount(shipSize);
+            }
         }
         markAllOwnShips();
     }
@@ -123,9 +136,9 @@ public class Playground extends JPanel{
     public void setButtonIcon(int x, int y, String iconType) {
         try {
             switch (iconType) {
-                case "bombedBoat" -> aButtons[x + 1][y + 1].setIcon( new ImageIcon( ImageIO.read( getClass().getResource( "/pictures/bombedBoat.png" ) ) ) );
-                case "ship"       -> aButtons[x + 1][y + 1].setIcon( new ImageIcon( ImageIO.read( getClass().getResource( "/pictures/ship.png" ) ) ) );
-                case "mine"       -> aButtons[x + 1][y + 1].setIcon( new ImageIcon( ImageIO.read( getClass().getResource( "/pictures/mine.png" ) ) ) );
+                case "bombedBoat" -> aButtons[x + 1][y + 1].setIcon( new ImageIcon( ImageIO.read(Objects.requireNonNull(getClass().getResource("/pictures/bombedBoat.png"))) ) );
+                case "ship"       -> aButtons[x + 1][y + 1].setIcon( new ImageIcon( ImageIO.read(Objects.requireNonNull(getClass().getResource("/pictures/ship.png"))) ) );
+                case "mine"       -> aButtons[x + 1][y + 1].setIcon( new ImageIcon( ImageIO.read(Objects.requireNonNull(getClass().getResource("/pictures/mine.png"))) ) );
             }
         } catch (IOException e) {
             e.printStackTrace();

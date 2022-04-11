@@ -1,5 +1,8 @@
 package Panels;
 
+import GameIO.HVListener;
+import Summaries.GameSummary;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -10,20 +13,23 @@ import java.awt.*;
 
 public class SelectShip extends JPanel {
 
-    private JRadioButton bFive  = new JRadioButton("0x Schlachtschiff (5er)");
-    private JRadioButton bFour  = new JRadioButton("0x Kreuzer (4er)");
-    private JRadioButton bThree = new JRadioButton("0x Zerstörer (3er)");
-    private JRadioButton bTwo   = new JRadioButton("0x U-Boote (2er)");
+    private final JRadioButton bFive  = new JRadioButton("0x Schlachtschiff (5er)");
+    private final JRadioButton bFour  = new JRadioButton("0x Kreuzer (4er)");
+    private final JRadioButton bThree = new JRadioButton("0x Zerstörer (3er)");
+    private final JRadioButton bTwo   = new JRadioButton("0x U-Boote (2er)");
+    private final JToggleButton toggle = new JToggleButton("Horizontal");
 
     private int countFive = 1;
     private int countFour = 2;
     private int countThree = 3;
     private int countTwo = 4;
 
+    private boolean horizontal = true;
+
     ButtonGroup buttonGroup = new ButtonGroup();
 
-    SelectShip( int id) {
-        setMinimumSize( new Dimension( 600, 50 ) );
+    SelectShip(int id, GameSummary gameSummary) {
+        setMinimumSize( new Dimension( gameSummary.getWidth(), gameSummary.getHeight() ) );
 
         setBackground((id == 1) ? Color.PINK : Color.LIGHT_GRAY);
         bFive.setBackground((id == 1) ? Color.PINK : Color.LIGHT_GRAY);
@@ -32,6 +38,9 @@ public class SelectShip extends JPanel {
         bTwo.setBackground((id == 1) ? Color.PINK : Color.LIGHT_GRAY);
 
         bTwo.setSelected(true);
+
+        toggle.addActionListener(new HVListener(this));
+        toggle.setActionCommand("toggle");
 
         setShipCount();
 
@@ -44,6 +53,7 @@ public class SelectShip extends JPanel {
         add(bFour);
         add(bThree);
         add(bTwo);
+        add(toggle);
     }
 
     public void setShipCount() {
@@ -53,38 +63,55 @@ public class SelectShip extends JPanel {
         bTwo.setText(countTwo + bTwo.getText().substring(1));
     }
 
-    public int getSelectedShipSize() {
-        int shipSize = 0;
+    public int getSelectedShipID() {
+        int shipID = 0;
 
         if (bFive.isSelected())
-            shipSize = 5;
+            shipID = 5;
 
         if (bFour.isSelected())
-            shipSize = 4;
+            shipID = 4;
 
         if (bThree.isSelected())
-            shipSize = 3;
+            shipID = 3;
 
         if (bTwo.isSelected())
-            shipSize = 2;
+            shipID = 2;
 
-        return shipSize;
+        return shipID;
     }
 
-    public void removeShipCount(int shipSize) {
+    public void removeShipCount(int shipID) {
 
-        switch(shipSize) {
-            case 5 -> countFive--;
-            case 4 -> countFour--;
-            case 3 -> countThree--;
-            case 2 -> countTwo--;
+        switch(shipID) {
+            case 5 -> {
+                countFive--;
+                if(countFive == 0)
+                    bFive.setEnabled(false);
+            }
+            case 4 -> {
+                countFour--;
+                if(countFour==0)
+                    bFour.setEnabled(false);
+            }
+            case 3 -> {
+                countThree--;
+                if(countThree == 0)
+                    bThree.setEnabled(false);
+            }
+            case 2 -> {
+                countTwo--;
+                if(countTwo == 0)
+                    bTwo.setEnabled(false);
+            }
+            default -> throw new IllegalStateException("Unexpected value: " + shipID);
         }
 
         setShipCount();
     }
 
     public boolean isPlaceable() {
-        switch(getSelectedShipSize()) {
+        switch(getSelectedShipID()) {
             case 5 -> {
                 return countFive != 0;
             }
@@ -99,5 +126,21 @@ public class SelectShip extends JPanel {
             }
         }
         return false;
+    }
+
+    public void switchToggleText() {
+        if(toggle.getText().equals("Horizontal"))
+            toggle.setText("Vertikal");
+        else
+            toggle.setText("Horizontal");
+
+    }
+
+    public boolean isHorizontal() {
+        return horizontal;
+    }
+
+    public void setHorizontal(boolean horizontal) {
+        this.horizontal = horizontal;
     }
 }

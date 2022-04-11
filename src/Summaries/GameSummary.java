@@ -37,12 +37,11 @@ public class GameSummary extends JFrame {
         //Initialisiere Panels + Add
         player1     = new GameField( this, 1 );
         player2     = new GameField( this, 2 );
-        pausePanel = new PausePanel(this);
+        pausePanel  = new PausePanel(this);
 
         add( player1 );
         add( player2 );
         add( pausePanel );
-
 
     }
 
@@ -51,7 +50,7 @@ public class GameSummary extends JFrame {
      */
     public void init() {
         System.out.println("Game-Status: " + getStatus());
-        setMinimumSize( new Dimension( 600, 600 ) );
+        setMinimumSize( new Dimension( Integer.parseInt(getProperty("width")), Integer.parseInt(getProperty("height")) ) );
         setVisible( true );
 
         player1.setVisible( true );

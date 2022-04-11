@@ -66,7 +66,7 @@ public class ButtonListener implements ActionListener {
             if (gameSummary.getStatus().equals( "setShips" )) {
 
                 if(gameField.getShipSelector().isPlaceable())
-                    gameField.getPlayground().placeShip( xCord, yCord , gameField.getShipSelector().getSelectedShipSize());
+                    gameField.getPlayground().placeShip( xCord, yCord , gameField.getShipSelector().getSelectedShipID());
 
 
             } else if ( gameSummary.getStatus().equals( "battle" ) ) {
