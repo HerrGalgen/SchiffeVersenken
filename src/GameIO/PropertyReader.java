@@ -14,7 +14,7 @@ public class PropertyReader {
 
     public PropertyReader() {
         try {
-            properties.load(new FileInputStream("E:\\Java\\SchiffeVersenken\\game.properties"));
+            properties.load(new FileInputStream("game.properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }

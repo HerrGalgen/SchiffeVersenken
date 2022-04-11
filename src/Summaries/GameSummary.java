@@ -27,6 +27,9 @@ public class GameSummary extends JFrame {
     GameSummary() {
         setLayout( new CardLayout() );
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setTitle("Schiffe-Versenken");
+
+        setIconImage(new ImageIcon("src\\pictures\\ship_block.png").getImage());
 
         //Set Properties from game:
         properties = new PropertyReader().getProperties();
