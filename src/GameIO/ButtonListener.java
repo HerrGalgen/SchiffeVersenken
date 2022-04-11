@@ -1,6 +1,7 @@
 package GameIO;
 
 import Panels.GameField;
+import Panels.SelectShip;
 import Summaries.GameSummary;
 
 import java.awt.event.ActionEvent;
@@ -19,6 +20,7 @@ public class ButtonListener implements ActionListener {
     private int             yCord       = 0;
     private StringTokenizer tokenizer;
     private int             id;
+    private int             shipSize    = 0;
 
 
     /**
@@ -38,7 +40,9 @@ public class ButtonListener implements ActionListener {
      */
     @Override
     public void actionPerformed( ActionEvent e ) {
-
+        //
+        //Next-Button Clicked
+        //
         if ( e.getActionCommand().equals( "next" ) ) {
 
             gameSummary.setClickCount( gameSummary.getClickCount() + 1 );
@@ -49,16 +53,20 @@ public class ButtonListener implements ActionListener {
             if ( gameSummary.getClickCount() == 2 )
                 gameSummary.startGame();
 
+            //
+            //Playground Button clicked:
+            //
         }else {
 
             tokenizer = new StringTokenizer( e.getActionCommand(), "," );
-            xCord = Integer.parseInt( tokenizer.nextToken() ) - 1;
             yCord = Integer.parseInt( tokenizer.nextToken() ) - 1;
+            xCord = Integer.parseInt( tokenizer.nextToken() ) - 1;
+
 
             if (gameSummary.getStatus().equals( "setShips" )) {
 
-                System.out.println( xCord + " " + yCord + " ship set");
-                gameField.getPlayground().placeShip( xCord, yCord );
+                if(gameField.getShipSelector().isPlaceable())
+                    gameField.getPlayground().placeShip( xCord, yCord , gameField.getShipSelector().getSelectedShipSize());
 
 
             } else if ( gameSummary.getStatus().equals( "battle" ) ) {

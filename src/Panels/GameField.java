@@ -12,6 +12,7 @@ import java.awt.*;
 public class GameField extends JPanel {
 
     private final Playground         playground;
+    private final SelectShip         shipSelector;
     private final JButton            bNext = new JButton("NEXT");
     private final ButtonListener     listener;
 
@@ -30,7 +31,7 @@ public class GameField extends JPanel {
         bNext.addActionListener( listener );
 
         playground = new Playground( this, gameSummary, id);
-        SelectShip shipSelector = new SelectShip( id );
+        shipSelector = new SelectShip( id );
 
         GridBagConstraints cons = new GridBagConstraints();
         cons.gridx = 0;
@@ -68,5 +69,9 @@ public class GameField extends JPanel {
      */
     public void removeNext() {
         remove( bNext );
+    }
+
+    public SelectShip getShipSelector() {
+        return shipSelector;
     }
 }

@@ -19,6 +19,7 @@ public class Playground extends JPanel{
     private JButton[][] aButtons    = new JButton[11][11];
     private int[][]     aShips      = new int[aButtons.length-1][aButtons[0].length-1]; // 0 = default; 1 = ship; 2 = broken ship
     private GameSummary gameSummary;
+    private GameField gameField;
 
 
     /**
@@ -32,6 +33,7 @@ public class Playground extends JPanel{
         setVisible(true);
 
         this.gameSummary = gameSummary;
+        this.gameField = gameField;
 
         //Declare Buttons in Array:
         for (int x = 0; x < aButtons.length; x++)
@@ -95,9 +97,18 @@ public class Playground extends JPanel{
         this.aShips = aShips;
     }
 
-    public void placeShip(int x, int y) {
-        aShips[x][y] = 1;
-        aButtons[x+1][y+1].setEnabled( false );
+    public void placeShip(int x, int y, int shipSize) {
+
+        if(x+shipSize < aShips.length+1) {
+            for (int i = 0; i < shipSize; i++) {
+                System.out.println(x + i + " " + y + " ship set");
+                aShips[y][x] = 1;
+                aButtons[y + 1][x + 1].setEnabled(false);
+                x++;
+            }
+            gameField.getShipSelector().removeShipCount(shipSize);
+        }
+        markAllOwnShips();
     }
 
     public void changeButton(int x, int y, boolean status) {
