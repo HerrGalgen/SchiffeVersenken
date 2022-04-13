@@ -1,5 +1,6 @@
 package Panels;
 
+import GameIO.ButtonListener;
 import Summaries.GameSummary;
 
 import javax.imageio.ImageIO;
@@ -25,7 +26,7 @@ public class Playground extends JPanel {
      * @param gameField   current Panels.GameField.
      * @param gameSummary Summaries.GameSummary.
      */
-    Playground( GameField gameField, GameSummary gameSummary ) {
+    Playground( GameField gameField, GameSummary gameSummary, int id ) {
         setLayout( new GridLayout( aButtons.length, aButtons[0].length ) );
         setMinimumSize( new Dimension( 600, 600 ) );
         setVisible(true);
@@ -33,12 +34,14 @@ public class Playground extends JPanel {
         this.gameSummary = gameSummary;
         this.gameField = gameField;
 
+        ButtonListener listener = new ButtonListener(gameSummary, gameField, id);
+
         //Declare Buttons in Array:
         for (int y = 0; y < aButtons.length; y++)
             for (int x = 0; x< aButtons[y].length; x++) {
                 aButtons[y][x] = new JButton();
                 aButtons[y][x].setActionCommand(y + "," + x);
-                aButtons[y][x].addActionListener(gameField.getListener());
+                aButtons[y][x].addActionListener(listener);
             }
         //Set Description for First Row:
         for (int i = 1; i < aButtons[0].length; i++) {

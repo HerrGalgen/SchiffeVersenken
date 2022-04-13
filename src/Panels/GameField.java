@@ -14,7 +14,6 @@ public class GameField extends JPanel {
     private final Playground         playground;
     private final SelectShip         shipSelector;
     private final JButton            bNext = new JButton("NEXT");
-    private final ButtonListener     listener;
 
 
     /**
@@ -25,12 +24,8 @@ public class GameField extends JPanel {
         setLayout( new GridBagLayout() );
         setMinimumSize( new Dimension( gameSummary.getWidth(), gameSummary.getHeight() ) );
        // setVisible( true );
-        listener = new ButtonListener(gameSummary,this,id);
 
-        bNext.setActionCommand( "next" );
-        bNext.addActionListener( listener );
-
-        playground = new Playground( this, gameSummary);
+        playground = new Playground( this, gameSummary, id);
         shipSelector = new SelectShip( id, gameSummary );
 
         GridBagConstraints cons = new GridBagConstraints();
@@ -45,9 +40,6 @@ public class GameField extends JPanel {
 
         cons.gridy++;
         add( shipSelector, cons );
-
-        cons.gridy++;
-        add(bNext, cons );
     }
 
     /**
@@ -57,21 +49,11 @@ public class GameField extends JPanel {
         return playground;
     }
 
-    /**
-     * @return current GameIO.Listener.
-     */
-    public ButtonListener getListener() {
-        return listener;
-    }
-
-    /**
-     * Removes the Next button from the player.
-     */
-    public void removeNext() {
-        remove( bNext );
-    }
-
     public SelectShip getShipSelector() {
         return shipSelector;
+    }
+
+    public void removeShipSelector() {
+        remove(shipSelector);
     }
 }

@@ -39,52 +39,33 @@ public class ButtonListener implements ActionListener {
 
         playground = gameField.getPlayground();
 
-        //
-        //Next-Button Clicked
-        //
-        if ( e.getActionCommand().equals( "next" ) ) {
-
-            gameSummary.setClickCount( gameSummary.getClickCount() + 1 );
-            System.out.println( "next" );
-            gameField.removeNext();
-            gameSummary.pauseGame(id);
-
-            if ( gameSummary.getClickCount() == 2 )
-                gameSummary.startGame();
-
-            //
-            //Playground Button clicked:
-            //
-        } else {
-
-            StringTokenizer tokenizer = new StringTokenizer( e.getActionCommand(), "," );
-            int yCord = Integer.parseInt( tokenizer.nextToken() ) - 1;
-            int xCord = Integer.parseInt( tokenizer.nextToken() ) - 1;
+        StringTokenizer tokenizer = new StringTokenizer( e.getActionCommand(), "," );
+        int yCord = Integer.parseInt( tokenizer.nextToken() ) - 1;
+        int xCord = Integer.parseInt( tokenizer.nextToken() ) - 1;
 
 
-            if ( gameSummary.getStatus().equals( "setShips" ) ) {
+        if ( gameSummary.getStatus().equals( "setShips" ) ) {
 
-                if ( gameField.getShipSelector().isPlaceable() )
-                    playground.placeShip( yCord, xCord, gameField.getShipSelector().getSelectedShipID() );
+            if ( gameField.getShipSelector().isPlaceable() )
+                playground.placeShip( yCord, xCord, gameField.getShipSelector().getSelectedShipID() );
 
 
-            } else if ( gameSummary.getStatus().equals( "battle" ) ) {
+        } else if ( gameSummary.getStatus().equals( "battle" ) ) {
 
-                System.out.println( yCord + " " + xCord + " rocketed");
+            System.out.println( yCord + " " + xCord + " rocketed");
 
-                //Test if ship was clicked:
-                if ( playground.getaShips()[yCord][xCord] == 1 ) {
+            //Test if ship was clicked:
+            if ( playground.getaShips()[yCord][xCord] == 1 ) {
 
-                    destroyShip( yCord, xCord );
+                destroyShip( yCord, xCord );
 
-                    if ( gameField.getPlayground().isWin() )
-                        System.out.println( "WIN " + id );
+                if ( gameField.getPlayground().isWin() )
+                    System.out.println( "WIN " + id );
 
-                } else { // no ship was hit:
-                    playground.setButtonIcon( ++yCord, ++xCord, "mine" );
-                    playground.changeButton( yCord, xCord, false );
-                    gameSummary.pauseGame( id );
-                }
+            } else { // no ship was hit:
+                playground.setButtonIcon( ++yCord, ++xCord, "mine" );
+                playground.changeButton( yCord, xCord, false );
+                gameSummary.pauseGame( id );
             }
         }
     }

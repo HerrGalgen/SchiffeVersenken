@@ -134,5 +134,9 @@ public class GameSummary extends JFrame {
         return properties.getProperty( prop );
     }
 
+    public GameField getCurrentPlayer(int id) {
+        if(id==1) return player1;
+        else return player2;
+    }
 
 }

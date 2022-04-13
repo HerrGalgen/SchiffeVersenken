@@ -1,5 +1,6 @@
 package Panels;
 
+import GameIO.ButtonListener;
 import GameIO.HVListener;
 import Summaries.GameSummary;
 
@@ -37,10 +38,17 @@ public class SelectShip extends JPanel {
         bThree.setBackground((id == 1) ? Color.PINK : Color.LIGHT_GRAY);
         bTwo.setBackground((id == 1) ? Color.PINK : Color.LIGHT_GRAY);
 
+        HVListener listener = new HVListener(this, gameSummary, id);
+
         bTwo.setSelected(true);
 
-        toggle.addActionListener(new HVListener(this));
+        toggle.addActionListener(listener);
         toggle.setActionCommand("toggle");
+
+        JButton bNext = new JButton("NEXT");
+        bNext.setMinimumSize(new Dimension(100,100));
+        bNext.setActionCommand("next");
+        bNext.addActionListener(listener);
 
         setShipCount();
 
@@ -54,6 +62,7 @@ public class SelectShip extends JPanel {
         add(bThree);
         add(bTwo);
         add(toggle);
+        add(bNext);
     }
 
     public void setShipCount() {
