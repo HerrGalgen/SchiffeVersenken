@@ -65,35 +65,35 @@ public class ButtonListener implements ActionListener {
             if ( gameSummary.getStatus().equals( "setShips" ) ) {
 
                 if ( gameField.getShipSelector().isPlaceable() )
-                    playground.placeShip( xCord, yCord, gameField.getShipSelector().getSelectedShipID() );
+                    playground.placeShip( yCord, xCord, gameField.getShipSelector().getSelectedShipID() );
 
 
             } else if ( gameSummary.getStatus().equals( "battle" ) ) {
 
-                System.out.println( xCord + " " + yCord + " rocketed");
+                System.out.println( yCord + " " + xCord + " rocketed");
 
                 //Test if ship was clicked:
-                if ( playground.getaShips()[xCord][yCord] == 1 ) {
+                if ( playground.getaShips()[yCord][xCord] == 1 ) {
 
-                    destroyShip( xCord, yCord );
+                    destroyShip( yCord, xCord );
 
                     if ( gameField.getPlayground().isWin() )
                         System.out.println( "WIN " + id );
 
                 } else { // no ship was hit:
-                    playground.setButtonIcon( xCord, yCord, "mine" );
-                    playground.changeButton( xCord, yCord, false );
+                    playground.setButtonIcon( ++yCord, ++xCord, "mine" );
+                    playground.changeButton( yCord, xCord, false );
                     gameSummary.pauseGame( id );
                 }
             }
         }
     }
 
-    private void destroyShip( int x, int y ) {
+    private void destroyShip( int y, int x ) {
 
-        playground.getaShips()[x][y]++;
-        playground.destroyShip( x, y );
-        playground.setButtonIcon( x, y, "bombedBoat" );
+        playground.getaShips()[y][x]++;
+        playground.changeButton( y+1, x+1, false );
+        playground.setButtonIcon( y+1, x+1, "bombedBoat" );
 
         System.out.println( "ship hitted" );
     }

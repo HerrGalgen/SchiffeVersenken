@@ -30,7 +30,7 @@ public class GameField extends JPanel {
         bNext.setActionCommand( "next" );
         bNext.addActionListener( listener );
 
-        playground = new Playground( this, gameSummary, id);
+        playground = new Playground( this, gameSummary);
         shipSelector = new SelectShip( id, gameSummary );
 
         GridBagConstraints cons = new GridBagConstraints();
