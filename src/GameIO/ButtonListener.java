@@ -73,9 +73,23 @@ public class ButtonListener implements ActionListener {
     private void destroyShip( int y, int x ) {
 
         playground.getaShips()[y][x]++;
-        playground.changeButton( y+1, x+1, false );
-        playground.setButtonIcon( y+1, x+1, "bombedBoat" );
+        playground.changeButton( y + 1, x + 1, false );
+        playground.setButtonIcon( y + 1, x + 1, "bombedBoat" );
+
+        testCompletedShipsDestroyed();
 
         System.out.println( "ship hitted" );
     }
+
+    private void testCompletedShipsDestroyed() {
+
+        int shipSize = 0;
+        boolean completeShipHitted = false;
+
+
+        if ( completeShipHitted )
+            gameField.getShipShower().removeDestroyedShip( shipSize );
+
+    }
+
 }
