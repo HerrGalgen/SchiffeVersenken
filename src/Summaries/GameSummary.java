@@ -6,6 +6,7 @@ import Panels.PausePanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
 import java.util.Properties;
 
 /**
@@ -103,6 +104,12 @@ public class GameSummary extends JFrame {
 
         player1.getPlayground().setaShips( player2.getPlayground().getaShips() );
         player2.getPlayground().setaShips( tempShips );
+
+        //Swap Ship-hashmaps:
+        HashMap<Integer, Integer> tempIDSize = player1.getPlayground().getShipIDSize();
+
+        player1.getPlayground().setShipIDSize( player2.getPlayground().getShipIDSize() );
+        player2.getPlayground().setShipIDSize( tempIDSize );
 
         //Aktiviere Spielbuttons
         player1.getPlayground().activateField();

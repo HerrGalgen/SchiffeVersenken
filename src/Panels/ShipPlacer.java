@@ -61,32 +61,32 @@ public class ShipPlacer extends JPanel {
         add(bThree);
         add(bTwo);
         add(toggle);
-        add(bNext);
+        add( bNext );
     }
 
     public void setShipCount() {
-        bFive.setText(countFive + bFive.getText().substring(1));
-        bFour.setText(countFour + bFour.getText().substring(1));
-        bThree.setText(countThree + bThree.getText().substring(1));
-        bTwo.setText(countTwo + bTwo.getText().substring(1));
+        bFive.setText( countFive + bFive.getText().substring( 1 ) );
+        bFour.setText( countFour + bFour.getText().substring( 1 ) );
+        bThree.setText( countThree + bThree.getText().substring( 1 ) );
+        bTwo.setText( countTwo + bTwo.getText().substring( 1 ) );
     }
 
-    public int getSelectedShipID() {
-        int shipID = 0;
+    public int getSelectedShipSize() {
+        int shipSize = 0;
 
-        if (bFive.isSelected())
-            shipID = 5;
+        if ( bFive.isSelected() )
+            shipSize = 5;
 
-        if (bFour.isSelected())
-            shipID = 4;
+        if ( bFour.isSelected() )
+            shipSize = 4;
 
-        if (bThree.isSelected())
-            shipID = 3;
+        if ( bThree.isSelected() )
+            shipSize = 3;
 
         if (bTwo.isSelected())
-            shipID = 2;
+            shipSize = 2;
 
-        return shipID;
+        return shipSize;
     }
 
     public void removeShipCount(int shipID) {
@@ -109,17 +109,17 @@ public class ShipPlacer extends JPanel {
             }
             case 2 -> {
                 countTwo--;
-                if(countTwo == 0)
-                    bTwo.setEnabled(false);
+                if ( countTwo == 0 )
+                    bTwo.setEnabled( false );
             }
-            default -> throw new IllegalStateException("Unexpected value: " + shipID);
+            default -> throw new IllegalStateException( "Unexpected value: " + shipID );
         }
 
         setShipCount();
     }
 
-    public boolean isPlaceable() {
-        switch(getSelectedShipID()) {
+    public boolean isAvailable() {
+        switch (getSelectedShipSize()) {
             case 5 -> {
                 return countFive != 0;
             }

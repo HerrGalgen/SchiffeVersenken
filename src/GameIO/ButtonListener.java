@@ -18,6 +18,7 @@ public class ButtonListener implements ActionListener {
     private final GameField   gameField;
     private final int         id;
     private       Playground  playground;
+    private       int         shipID = 0;
 
 
     /**
@@ -46,8 +47,10 @@ public class ButtonListener implements ActionListener {
 
         if ( gameSummary.getStatus().equals( "setShips" ) ) {
 
-            if ( gameField.getShipPlacer().isPlaceable() )
-                playground.placeShip( yCord, xCord, gameField.getShipPlacer().getSelectedShipID() );
+            if ( gameField.getShipPlacer().isAvailable() && playground.isPlaceable( yCord, xCord, gameField.getShipPlacer().getSelectedShipSize() ) ) {
+                shipID++;
+                playground.placeShip( yCord, xCord, gameField.getShipPlacer().getSelectedShipSize(), shipID );
+            }
 
 
         } else if ( gameSummary.getStatus().equals( "battle" ) ) {
@@ -55,7 +58,7 @@ public class ButtonListener implements ActionListener {
             System.out.println( yCord + " " + xCord + " rocketed");
 
             //Test if ship was clicked:
-            if ( playground.getaShips()[yCord][xCord] == 1 ) {
+            if ( playground.getaShips()[yCord][xCord] != 0 ) {
 
                 destroyShip( yCord, xCord );
 
@@ -71,25 +74,19 @@ public class ButtonListener implements ActionListener {
     }
 
     private void destroyShip( int y, int x ) {
+        shipID = playground.getIDtoCord( y, x );
 
-        playground.getaShips()[y][x]++;
+        playground.getaShips()[y][x] = -1;
         playground.changeButton( y + 1, x + 1, false );
         playground.setButtonIcon( y + 1, x + 1, "bombedBoat" );
 
-        testCompletedShipsDestroyed();
+        //Complete ship was Destroyed
+        if ( !playground.shipInArray( playground.getaShips(), shipID ) ) {
+            gameField.getShipShower().removeDestroyedShip( playground.getSizeToID( shipID ) );
+        }
 
         System.out.println( "ship hitted" );
     }
 
-    private void testCompletedShipsDestroyed() {
-
-        int shipSize = 0;
-        boolean completeShipHitted = false;
-
-
-        if ( completeShipHitted )
-            gameField.getShipShower().removeDestroyedShip( shipSize );
-
-    }
 
 }
