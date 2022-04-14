@@ -1,7 +1,8 @@
 package Summaries;
 
-import GameIO.*;
-import Panels.*;
+import GameIO.PropertyReader;
+import Panels.GameField;
+import Panels.PausePanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -107,9 +108,12 @@ public class GameSummary extends JFrame {
         player1.getPlayground().activateField();
         player2.getPlayground().activateField();
 
+        player1.getShipShower().setShipsLeft( player2.getShipPlacer().getPlacedShips() );
+        player2.getShipShower().setShipsLeft( player1.getShipPlacer().getPlacedShips() );
+
         setStatus( "battle" );
 
-        System.out.println("Game-Status: " + getStatus());
+        System.out.println( "Game-Status: " + getStatus() );
     }
 
     //Getter and Setter:

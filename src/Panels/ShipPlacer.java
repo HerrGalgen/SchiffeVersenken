@@ -1,7 +1,6 @@
 package Panels;
 
-import GameIO.ButtonListener;
-import GameIO.HVListener;
+import GameIO.ShipPlacerListener;
 import Summaries.GameSummary;
 
 import javax.swing.*;
@@ -12,16 +11,16 @@ import java.awt.*;
  * In the game, it shows the ships from the enemy.
  */
 
-public class SelectShip extends JPanel {
+public class ShipPlacer extends JPanel {
 
-    private final JRadioButton bFive  = new JRadioButton("0x Schlachtschiff (5er)");
-    private final JRadioButton bFour  = new JRadioButton("0x Kreuzer (4er)");
-    private final JRadioButton bThree = new JRadioButton("0x Zerstörer (3er)");
-    private final JRadioButton bTwo   = new JRadioButton("0x U-Boote (2er)");
-    private final JToggleButton toggle = new JToggleButton("Horizontal");
+    private final JRadioButton  bFive  = new JRadioButton( "0x Schlachtschiff (5er)" );
+    private final JRadioButton  bFour  = new JRadioButton( "0x Kreuzer (4er)" );
+    private final JRadioButton  bThree = new JRadioButton( "0x Zerstörer (3er)" );
+    private final JRadioButton  bTwo   = new JRadioButton( "0x U-Boote (2er)" );
+    private final JToggleButton toggle = new JToggleButton( "Horizontal" );
 
-    private int countFive = 1;
-    private int countFour = 2;
+    private int countFive  = 1;
+    private int countFour  = 2;
     private int countThree = 3;
     private int countTwo = 4;
 
@@ -29,16 +28,16 @@ public class SelectShip extends JPanel {
 
     ButtonGroup buttonGroup = new ButtonGroup();
 
-    SelectShip(int id, GameSummary gameSummary) {
+    ShipPlacer( int id, GameSummary gameSummary ) {
         setMinimumSize( new Dimension( gameSummary.getWidth(), gameSummary.getHeight() ) );
 
-        setBackground((id == 1) ? Color.PINK : Color.LIGHT_GRAY);
-        bFive.setBackground((id == 1) ? Color.PINK : Color.LIGHT_GRAY);
-        bFour.setBackground((id == 1) ? Color.PINK : Color.LIGHT_GRAY);
-        bThree.setBackground((id == 1) ? Color.PINK : Color.LIGHT_GRAY);
-        bTwo.setBackground((id == 1) ? Color.PINK : Color.LIGHT_GRAY);
+        setBackground( (id == 1) ? Color.PINK : Color.LIGHT_GRAY );
+        bFive.setBackground( (id == 1) ? Color.PINK : Color.LIGHT_GRAY );
+        bFour.setBackground( (id == 1) ? Color.PINK : Color.LIGHT_GRAY );
+        bThree.setBackground( (id == 1) ? Color.PINK : Color.LIGHT_GRAY );
+        bTwo.setBackground( (id == 1) ? Color.PINK : Color.LIGHT_GRAY );
 
-        HVListener listener = new HVListener(this, gameSummary, id);
+        ShipPlacerListener listener = new ShipPlacerListener( this, gameSummary, id );
 
         bTwo.setSelected(true);
 
@@ -151,7 +150,18 @@ public class SelectShip extends JPanel {
         return horizontal;
     }
 
-    public void setHorizontal(boolean horizontal) {
+    public void setHorizontal( boolean horizontal ) {
         this.horizontal = horizontal;
+    }
+
+    public int[] getPlacedShips() {
+        int[] ships = new int[4];
+
+        ships[0] = 4 - countTwo;
+        ships[1] = 3 - countThree;
+        ships[2] = 2 - countFour;
+        ships[3] = 1 - countFive;
+
+        return ships;
     }
 }

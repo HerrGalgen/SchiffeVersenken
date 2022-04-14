@@ -1,18 +1,18 @@
 package GameIO;
 
-import Panels.SelectShip;
+import Panels.ShipPlacer;
 import Summaries.GameSummary;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class HVListener implements ActionListener {
+public class ShipPlacerListener implements ActionListener {
 
-    SelectShip selectShip;
+    ShipPlacer  selectShip;
     GameSummary gameSummary;
-    int id;
+    int         id;
 
-    public HVListener(SelectShip selectShip, GameSummary gameSummary, int id) {
+    public ShipPlacerListener( ShipPlacer selectShip, GameSummary gameSummary, int id ) {
         this.selectShip = selectShip;
         this.gameSummary = gameSummary;
         this.id = id;
@@ -31,8 +31,8 @@ public class HVListener implements ActionListener {
         else if(e.getActionCommand().equals("next")) {
             gameSummary.setClickCount( gameSummary.getClickCount() + 1 );
             System.out.println( "next" );
-            gameSummary.pauseGame(id);
-            gameSummary.getCurrentPlayer(id).removeShipSelector();
+            gameSummary.pauseGame( id );
+            gameSummary.getCurrentPlayer( id ).prepareGame();
 
             if ( gameSummary.getClickCount() == 2 )
                 gameSummary.startGame();

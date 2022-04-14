@@ -100,7 +100,7 @@ public class Playground extends JPanel {
 
     public void placeShip(int y, int x, int shipSize) {
 
-        if( gameField.getShipSelector().isHorizontal()) {
+        if ( gameField.getShipPlacer().isHorizontal() ) {
             if ( x + shipSize < aShips.length + 1 ) {
                 for (int i = 0; i < shipSize; i++) {
                     System.out.println( x + " " + y + " ship set" );
@@ -108,7 +108,7 @@ public class Playground extends JPanel {
                     aButtons[y + 1][x + 1].setEnabled( false );
                     x++;
                 }
-                gameField.getShipSelector().removeShipCount( shipSize );
+                gameField.getShipPlacer().removeShipCount( shipSize );
             }
         } else {
             if ( (y + 1 - shipSize) >= 0 ) {
@@ -118,7 +118,7 @@ public class Playground extends JPanel {
                     aButtons[y + 1][x+ 1].setEnabled( false );
                     y--;
                 }
-                gameField.getShipSelector().removeShipCount( shipSize );
+                gameField.getShipPlacer().removeShipCount( shipSize );
             }
         }
         markAllOwnShips();

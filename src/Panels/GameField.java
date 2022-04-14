@@ -1,7 +1,6 @@
 package Panels;
 
-import GameIO.*;
-import Summaries.*;
+import Summaries.GameSummary;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,23 +11,23 @@ import java.awt.*;
 public class GameField extends JPanel {
 
     private final Playground         playground;
-    private final SelectShip         shipSelector;
-    private final JButton            bNext = new JButton("NEXT");
+    private final ShipPlacer         shipPlacer;
+    private final ShipShower         shipShower;
+    private final GridBagConstraints cons = new GridBagConstraints();
 
 
     /**
      * @param gameSummary The Summaries.GameSummary
-     * @param id The current PlayerID.
+     * @param id          The current PlayerID.
      */
-    public GameField(GameSummary gameSummary, int id) {
+    public GameField( GameSummary gameSummary, int id ) {
         setLayout( new GridBagLayout() );
         setMinimumSize( new Dimension( gameSummary.getWidth(), gameSummary.getHeight() ) );
-       // setVisible( true );
 
-        playground = new Playground( this, gameSummary, id);
-        shipSelector = new SelectShip( id, gameSummary );
+        playground = new Playground( this, gameSummary, id );
+        shipPlacer = new ShipPlacer( id, gameSummary );
+        shipShower = new ShipShower( gameSummary );
 
-        GridBagConstraints cons = new GridBagConstraints();
         cons.gridx = 0;
         cons.gridy = 0;
 
@@ -39,7 +38,7 @@ public class GameField extends JPanel {
         add( playground, cons );
 
         cons.gridy++;
-        add( shipSelector, cons );
+        add( shipPlacer, cons );
     }
 
     /**
@@ -49,11 +48,16 @@ public class GameField extends JPanel {
         return playground;
     }
 
-    public SelectShip getShipSelector() {
-        return shipSelector;
+    public ShipPlacer getShipPlacer() {
+        return shipPlacer;
     }
 
-    public void removeShipSelector() {
-        remove(shipSelector);
+    public ShipShower getShipShower() {
+        return shipShower;
+    }
+
+    public void prepareGame() {
+        remove( shipPlacer );
+        add( shipShower, cons );
     }
 }
