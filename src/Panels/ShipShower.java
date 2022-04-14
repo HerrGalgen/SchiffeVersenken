@@ -60,4 +60,13 @@ public class ShipShower extends JPanel {
 
     }
 
+    public int getPlacedShips() {
+        int shipsleft = 0;
+
+        for (int shipCount : shipsLeft) {
+            shipsleft += shipCount;
+        }
+
+        return shipsleft;
+    }
 }

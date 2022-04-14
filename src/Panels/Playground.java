@@ -67,23 +67,28 @@ public class Playground extends JPanel {
     //
     //Other useful function:
     //
-    
+
     public void activateField() {
-        for(int y = 1; y < aButtons.length; y++)
-            for(int x = 1; x < aButtons[y].length; x++)
+        for (int y = 1; y < aButtons.length; y++)
+            for (int x = 1; x < aButtons[y].length; x++)
                 aButtons[x][y].setEnabled( true );
     }
 
     public boolean isWin() {
-        for(int[] rows : aShips)
-            if(contains( rows,1 ))
-                return false;
-
-        return true;
+        return gameField.getShipShower().getPlacedShips() == 0;
     }
 
-    public boolean contains(int[] arr, int key) {
-        return Arrays.stream(arr).anyMatch( i -> i == key);
+    /*
+        public boolean isWin() {
+            for(int[] rows : aShips)
+                if(contains( rows,1 ))
+                    return false;
+
+            return true;
+        }
+    */
+    public boolean contains( int[] arr, int key ) {
+        return Arrays.stream( arr ).anyMatch( i -> i == key );
     }
 
     //
