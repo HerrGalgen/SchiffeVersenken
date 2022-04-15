@@ -14,32 +14,33 @@ import java.util.Properties;
  */
 public class GameSummary extends JFrame {
 
-    private final GameField player1;
-    private final GameField player2;
-    private final PausePanel pausePanel;
-    private       int        pausedPlayer = 0;
-    private final Properties properties;
-
-    private       int       clickCount  = 0;
-    private       String    status      = "setShips";
+    private static final Color      COLOR_P1     = new Color( 0x5EFF91 );
+    private static final Color      COLOR_P2     = new Color( 0x5EB1FF );
+    private final        PausePanel pausePanel;
+    private              int        pausedPlayer = 0;
+    private final        Properties properties;
+    private final        GameField  player1;
+    private final        GameField  player2;
+    private              int        clickCount   = 0;
+    private              String     status       = "setShips";
 
     /**
      *
      */
     GameSummary() {
         setLayout( new CardLayout() );
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Schiffe-Versenken");
+        setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+        setTitle( "Schiffe-Versenken" );
 
-        setIconImage(new ImageIcon("src\\pictures\\ship_block.png").getImage());
+        setIconImage( new ImageIcon( "src\\pictures\\ship_block.png" ).getImage() );
 
         //Set Properties from game:
         properties = new PropertyReader().getProperties();
 
         //Initialisiere Panels + Add
-        player1     = new GameField( this, 1 );
-        player2     = new GameField( this, 2 );
-        pausePanel  = new PausePanel(this);
+        player1 = new GameField( this, 1 );
+        player2 = new GameField( this, 2 );
+        pausePanel = new PausePanel( this );
 
         add( player1 );
         add( player2 );
@@ -141,13 +142,20 @@ public class GameSummary extends JFrame {
         this.status = status;
     }
 
-    public String getProperty( String prop) {
+    public static Color getColorP1() {
+        return COLOR_P1;
+    }
+
+    public static Color getColorP2() {
+        return COLOR_P2;
+    }
+
+    public String getProperty( String prop ) {
         return properties.getProperty( prop );
     }
 
-    public GameField getCurrentPlayer(int id) {
-        if(id==1) return player1;
+    public GameField getCurrentPlayer( int id ) {
+        if ( id == 1 ) return player1;
         else return player2;
     }
-
 }

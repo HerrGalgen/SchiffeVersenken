@@ -26,7 +26,7 @@ public class GameField extends JPanel {
 
         playground = new Playground( this, gameSummary, id );
         shipPlacer = new ShipPlacer( id, gameSummary );
-        shipShower = new ShipShower( gameSummary );
+        shipShower = new ShipShower( gameSummary, id );
 
         cons.gridx = 0;
         cons.gridy = 0;

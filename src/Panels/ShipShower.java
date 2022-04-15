@@ -17,12 +17,13 @@ public class ShipShower extends JPanel {
     JLabel lTwo   = new JLabel();
 
 
-    ShipShower( GameSummary gameSummary ) {
+    ShipShower( GameSummary gameSummary, int id ) {
         this.gameSummary = gameSummary;
         setLayout( new BoxLayout( this, BoxLayout.Y_AXIS ) );
 
         setMinimumSize( new Dimension( gameSummary.getWidth(), gameSummary.getHeight() ) );
-        setBackground( Color.ORANGE );
+
+        setBackground( (id == 1) ? GameSummary.getColorP1() : GameSummary.getColorP2() );
 
         lTwo.setAlignmentX( Component.CENTER_ALIGNMENT );
         lThree.setAlignmentX( Component.CENTER_ALIGNMENT );

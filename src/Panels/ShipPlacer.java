@@ -31,30 +31,30 @@ public class ShipPlacer extends JPanel {
     ShipPlacer( int id, GameSummary gameSummary ) {
         setMinimumSize( new Dimension( gameSummary.getWidth(), gameSummary.getHeight() ) );
 
-        setBackground( (id == 1) ? Color.PINK : Color.LIGHT_GRAY );
-        bFive.setBackground( (id == 1) ? Color.PINK : Color.LIGHT_GRAY );
-        bFour.setBackground( (id == 1) ? Color.PINK : Color.LIGHT_GRAY );
-        bThree.setBackground( (id == 1) ? Color.PINK : Color.LIGHT_GRAY );
-        bTwo.setBackground( (id == 1) ? Color.PINK : Color.LIGHT_GRAY );
+        setBackground( (id == 1) ? GameSummary.getColorP1() : GameSummary.getColorP2() );
+        bFive.setBackground( (id == 1) ? GameSummary.getColorP1() : GameSummary.getColorP2() );
+        bFour.setBackground( (id == 1) ? GameSummary.getColorP1() : GameSummary.getColorP2() );
+        bThree.setBackground( (id == 1) ? GameSummary.getColorP1() : GameSummary.getColorP2() );
+        bTwo.setBackground( (id == 1) ? GameSummary.getColorP1() : GameSummary.getColorP2() );
 
         ShipPlacerListener listener = new ShipPlacerListener( this, gameSummary, id );
 
-        bTwo.setSelected(true);
+        bTwo.setSelected( true );
 
-        toggle.addActionListener(listener);
-        toggle.setActionCommand("toggle");
+        toggle.addActionListener( listener );
+        toggle.setActionCommand( "toggle" );
 
-        JButton bNext = new JButton("NEXT");
-        bNext.setMinimumSize(new Dimension(100,100));
-        bNext.setActionCommand("next");
-        bNext.addActionListener(listener);
+        JButton bNext = new JButton( "NEXT" );
+        bNext.setMinimumSize( new Dimension( 100, 100 ) );
+        bNext.setActionCommand( "next" );
+        bNext.addActionListener( listener );
 
         setShipCount();
 
-        buttonGroup.add(bFive);
-        buttonGroup.add(bFour);
-        buttonGroup.add(bThree);
-        buttonGroup.add(bTwo);
+        buttonGroup.add( bFive );
+        buttonGroup.add( bFour );
+        buttonGroup.add( bThree );
+        buttonGroup.add( bTwo );
 
         add(bFive);
         add(bFour);

@@ -132,9 +132,10 @@ public class Playground extends JPanel {
     public void setButtonIcon(int y, int x, String iconType) {
         try {
             switch (iconType) {
-                case "bombedBoat" -> aButtons[y][x].setIcon( new ImageIcon( ImageIO.read(Objects.requireNonNull(getClass().getResource("/pictures/bombedBoat.png"))) ) );
-                case "ship"       -> aButtons[y][x].setIcon( new ImageIcon( ImageIO.read(Objects.requireNonNull(getClass().getResource("/pictures/ship.png"))) ) );
-                case "mine"       -> aButtons[y][x].setIcon( new ImageIcon( ImageIO.read(Objects.requireNonNull(getClass().getResource("/pictures/mine.png"))) ) );
+                case "bombedBoat" -> aButtons[y][x].setIcon( new ImageIcon( ImageIO.read( Objects.requireNonNull( getClass().getResource( "/pictures/bombedBoat.png" ) ) ) ) );
+                case "ship" -> aButtons[y][x].setIcon( new ImageIcon( ImageIO.read( Objects.requireNonNull( getClass().getResource( "/pictures/ship.png" ) ) ) ) );
+                case "mine" -> aButtons[y][x].setIcon( new ImageIcon( ImageIO.read( Objects.requireNonNull( getClass().getResource( "/pictures/mine.png" ) ) ) ) );
+                case "block" -> aButtons[y][x].setIcon( new ImageIcon( ImageIO.read( Objects.requireNonNull( getClass().getResource( "/pictures/block.png" ) ) ) ) );
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -154,11 +155,39 @@ public class Playground extends JPanel {
     }
 
     public boolean isPlaceable( int y, int x, int shipSize ) {
-        if ( gameField.getShipPlacer().isHorizontal() )
-            return x + shipSize < aShips.length + 1;
-        else
-            return y + 1 - shipSize >= 0;
 
+        boolean placeable;
+
+        //ship is in bounds:
+        if ( gameField.getShipPlacer().isHorizontal() )
+            placeable = x + shipSize < aShips.length + 1;
+        else
+            placeable = y + 1 - shipSize >= 0;
+
+        if ( !placeable )
+            return false;
+
+        return isValidPlace( y, x, shipSize );
+
+    }
+
+    public boolean isValidPlace( int y, int x, int shipSize ) {
+
+        int startPosX = (x <= 0) ? x : x - 1;
+        int startPosY = (y <= 0) ? y : y - 1;
+        int endPosX = (x + shipSize + 1 < aShips[y].length + 1) ? x + shipSize : x + shipSize - 1;
+        int endPosY = (y + 1 < aShips.length + 1) ? y + 1 : y;
+
+        if ( endPosY > 9 )
+            endPosY = 9;
+
+        // See how many are alive
+        for (int xNum = startPosX; xNum <= endPosX; xNum++)
+            for (int yNum = startPosY; yNum <= endPosY; yNum++)
+                if ( aShips[yNum][xNum] != 0 )
+                    return false;
+
+        return true;
     }
 
     public int getSizeToID( int shipID ) {
@@ -176,4 +205,5 @@ public class Playground extends JPanel {
     public void setShipIDSize( HashMap<Integer, Integer> shipIDSize ) {
         this.shipIDSize = shipIDSize;
     }
+
 }
