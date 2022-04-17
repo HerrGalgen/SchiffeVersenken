@@ -226,4 +226,12 @@ public class Playground extends JPanel {
         this.shipIDSize = shipIDSize;
     }
 
+    public void removeBlocked() {
+        for(JButton[] buttons : aButtons)
+            for(JButton button : buttons)
+                button.setIcon( null );
+
+        markAllOwnShips();
+    }
+
 }

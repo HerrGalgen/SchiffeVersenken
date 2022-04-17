@@ -59,5 +59,6 @@ public class GameField extends JPanel {
     public void prepareGame() {
         remove( shipPlacer );
         add( shipShower, cons );
+        playground.removeBlocked();
     }
 }
