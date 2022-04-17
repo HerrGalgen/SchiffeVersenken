@@ -30,12 +30,9 @@ public class ShipPlacer extends JPanel {
 
     ShipPlacer( int id, GameSummary gameSummary ) {
         setMinimumSize( new Dimension( gameSummary.getWidth(), gameSummary.getHeight() ) );
-
         setBackground( (id == 1) ? GameSummary.getColorP1() : GameSummary.getColorP2() );
-        bFive.setBackground( (id == 1) ? GameSummary.getColorP1() : GameSummary.getColorP2() );
-        bFour.setBackground( (id == 1) ? GameSummary.getColorP1() : GameSummary.getColorP2() );
-        bThree.setBackground( (id == 1) ? GameSummary.getColorP1() : GameSummary.getColorP2() );
-        bTwo.setBackground( (id == 1) ? GameSummary.getColorP1() : GameSummary.getColorP2() );
+
+        initButtons( id );
 
         ShipPlacerListener listener = new ShipPlacerListener( this, gameSummary, id );
 
@@ -48,6 +45,8 @@ public class ShipPlacer extends JPanel {
         bNext.setMinimumSize( new Dimension( 100, 100 ) );
         bNext.setActionCommand( "next" );
         bNext.addActionListener( listener );
+        bNext.setBackground( Color.RED );
+        bNext.setForeground( Color.WHITE );
 
         setShipCount();
 
@@ -56,12 +55,27 @@ public class ShipPlacer extends JPanel {
         buttonGroup.add( bThree );
         buttonGroup.add( bTwo );
 
-        add(bFive);
-        add(bFour);
-        add(bThree);
-        add(bTwo);
-        add(toggle);
+        add( bFive );
+        add( bFour );
+        add( bThree );
+        add( bTwo );
+        add( toggle );
         add( bNext );
+    }
+
+    private void initButtons( int id ) {
+
+        Font rbFont = new Font( "Dialog", Font.BOLD, 15 );
+
+        bFive.setBackground( (id == 1) ? GameSummary.getColorP1() : GameSummary.getColorP2() );
+        bFour.setBackground( (id == 1) ? GameSummary.getColorP1() : GameSummary.getColorP2() );
+        bThree.setBackground( (id == 1) ? GameSummary.getColorP1() : GameSummary.getColorP2() );
+        bTwo.setBackground( (id == 1) ? GameSummary.getColorP1() : GameSummary.getColorP2() );
+
+        bFive.setFont( rbFont );
+        bFour.setFont( rbFont );
+        bThree.setFont( rbFont );
+        bTwo.setFont( rbFont );
     }
 
     public void setShipCount() {
