@@ -234,4 +234,13 @@ public class Playground extends JPanel {
         markAllOwnShips();
     }
 
+    public void markDestroyedShip( int desShipID ) {
+
+        for (int x = 0; x < aShips.length; x++)
+            for (int y = 0; y < aShips[x].length; y++)
+                if ( aShips[y][x] == desShipID )
+                    aButtons[y+1][x+1].setBackground( Color.RED );
+
+
+    }
 }

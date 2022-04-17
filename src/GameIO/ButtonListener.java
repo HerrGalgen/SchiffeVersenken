@@ -76,13 +76,14 @@ public class ButtonListener implements ActionListener {
     private void destroyShip( int y, int x ) {
         shipID = playground.getIDtoCord( y, x );
 
-        playground.getaShips()[y][x] = -1;
+        playground.getaShips()[y][x] = -shipID;
         playground.changeButton( y + 1, x + 1, false );
         playground.setButtonIcon( y + 1, x + 1, "bombedBoat" );
 
         //Complete ship was Destroyed
         if ( !playground.shipInArray( playground.getaShips(), shipID ) ) {
             gameField.getShipShower().removeDestroyedShip( playground.getSizeToID( shipID ) );
+            gameField.getPlayground().markDestroyedShip(-shipID);
         }
 
         System.out.println( "ship hitted" );
