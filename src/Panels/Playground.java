@@ -172,20 +172,40 @@ public class Playground extends JPanel {
     }
 
     public boolean isValidPlace( int y, int x, int shipSize ) {
+        int startPosX;
+        int startPosY;
+        int endPosX;
+        int endPosY;
 
-        int startPosX = (x <= 0) ? x : x - 1;
-        int startPosY = (y <= 0) ? y : y - 1;
-        int endPosX = (x + shipSize + 1 < aShips[y].length + 1) ? x + shipSize : x + shipSize - 1;
-        int endPosY = (y + 1 < aShips.length + 1) ? y + 1 : y;
+        if ( gameField.getShipPlacer().isHorizontal() ) {
+            startPosX = (x <= 0) ? x : x - 1;
+            startPosY = (y <= 0) ? y : y - 1;
+            endPosX = (x + shipSize + 1 < aShips[y].length + 1) ? x + shipSize : x + shipSize - 1;
+            endPosY = (y + 1 < aShips.length + 1) ? y + 1 : y;
+        } else {
+            startPosX = (x <= 0) ? x : x - 1;
+            startPosY = (y - shipSize >= 0) ? y - shipSize : y - 1;
+            endPosX = (x < aShips[y].length) ? x + 1 : x - 1;
+            endPosY = (y - shipSize < aShips.length + 1) ? y + 1 : y - 1;
+        }
+
 
         if ( endPosY > 9 )
             endPosY = 9;
 
+        if ( endPosX > 9 )
+            endPosX = 9;
+
         // See how many are alive
         for (int xNum = startPosX; xNum <= endPosX; xNum++)
-            for (int yNum = startPosY; yNum <= endPosY; yNum++)
+            for (int yNum = startPosY; yNum <= endPosY; yNum++) {
                 if ( aShips[yNum][xNum] != 0 )
                     return false;
+            }
+
+        for (int xNum = startPosX; xNum <= endPosX; xNum++)
+            for (int yNum = startPosY; yNum <= endPosY; yNum++)
+                setButtonIcon( yNum + 1, xNum + 1, "block" );
 
         return true;
     }
