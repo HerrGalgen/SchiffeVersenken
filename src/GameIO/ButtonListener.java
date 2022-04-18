@@ -1,6 +1,6 @@
 package GameIO;
 
-import Panels.GameField;
+import Summaries.PlayerSummary;
 import Panels.Playground;
 import Summaries.GameSummary;
 
@@ -9,26 +9,26 @@ import java.awt.event.ActionListener;
 import java.util.StringTokenizer;
 
 /**
- * All GameIO.Listener for the Panels.GameField e.g. for clicking one Field.
+ * All GameIO.Listener for the Summaries.PlayerSummary e.g. for clicking one Field.
  */
 
 public class ButtonListener implements ActionListener {
 
-    private final GameSummary gameSummary;
-    private final GameField   gameField;
-    private final int         id;
+    private final GameSummary   gameSummary;
+    private final PlayerSummary playerSummary;
+    private final int           id;
     private       Playground  playground;
     private       int         shipID = 0;
 
 
     /**
      * @param gameSummary The Summaries.GameSummary
-     * @param gameField   The current Panels.GameField.
+     * @param playerSummary   The current Summaries.PlayerSummary.
      * @param id          The current PlayerID.
      */
-    public ButtonListener( GameSummary gameSummary, GameField gameField, int id ) {
+    public ButtonListener( GameSummary gameSummary, PlayerSummary playerSummary, int id ) {
         this.gameSummary = gameSummary;
-        this.gameField = gameField;
+        this.playerSummary = playerSummary;
         this.id = id;
     }
 
@@ -38,7 +38,7 @@ public class ButtonListener implements ActionListener {
     @Override
     public void actionPerformed( ActionEvent e ) {
 
-        playground = gameField.getPlayground();
+        playground = playerSummary.getPlayground();
 
         StringTokenizer tokenizer = new StringTokenizer( e.getActionCommand(), "," );
         int yCord = Integer.parseInt( tokenizer.nextToken() ) - 1;
@@ -47,9 +47,9 @@ public class ButtonListener implements ActionListener {
 
         if ( gameSummary.getStatus().equals( "setShips" ) ) {
 
-            if ( gameField.getShipPlacer().isAvailable() && playground.isPlaceable( yCord, xCord, gameField.getShipPlacer().getSelectedShipSize() ) ) {
+            if ( playerSummary.getShipPlacer().isAvailable() && playground.isPlaceable( yCord, xCord, playerSummary.getShipPlacer().getSelectedShipSize() ) ) {
                 shipID++;
-                playground.placeShip( yCord, xCord, gameField.getShipPlacer().getSelectedShipSize(), shipID );
+                playground.placeShip( yCord, xCord, playerSummary.getShipPlacer().getSelectedShipSize(), shipID );
             }
 
 
@@ -62,7 +62,7 @@ public class ButtonListener implements ActionListener {
 
                 destroyShip( yCord, xCord );
 
-                if ( gameField.getPlayground().isWin() )
+                if ( playerSummary.getPlayground().isWin() )
                     System.out.println( "WIN " + id );
 
             } else { // no ship was hit:
@@ -82,8 +82,8 @@ public class ButtonListener implements ActionListener {
 
         //Complete ship was Destroyed
         if ( !playground.shipInArray( playground.getaShips(), shipID ) ) {
-            gameField.getShipShower().removeDestroyedShip( playground.getSizeToID( shipID ) );
-            gameField.getPlayground().markDestroyedShip(-shipID);
+            playerSummary.getShipShower().removeDestroyedShip( playground.getSizeToID( shipID ) );
+            playerSummary.getPlayground().markDestroyedShip(-shipID);
         }
 
         System.out.println( "ship hitted" );

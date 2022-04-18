@@ -1,5 +1,8 @@
-package Panels;
+package Summaries;
 
+import Panels.Playground;
+import Panels.ShipPlacer;
+import Panels.ShipShower;
 import Summaries.GameSummary;
 
 import javax.swing.*;
@@ -8,7 +11,7 @@ import java.awt.*;
 /**
  * Creates a JPanel which includes an Panels.Playground and an Shipselector.
  */
-public class GameField extends JPanel {
+public class PlayerSummary extends JPanel {
 
     private final Playground         playground;
     private final ShipPlacer         shipPlacer;
@@ -20,7 +23,7 @@ public class GameField extends JPanel {
      * @param gameSummary The Summaries.GameSummary
      * @param id          The current PlayerID.
      */
-    public GameField( GameSummary gameSummary, int id ) {
+    public PlayerSummary( GameSummary gameSummary, int id ) {
         setLayout( new GridBagLayout() );
         setMinimumSize( new Dimension( gameSummary.getWidth(), gameSummary.getHeight() ) );
 

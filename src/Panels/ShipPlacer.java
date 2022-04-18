@@ -28,7 +28,7 @@ public class ShipPlacer extends JPanel {
 
     ButtonGroup buttonGroup = new ButtonGroup();
 
-    ShipPlacer( int id, GameSummary gameSummary ) {
+    public ShipPlacer( int id, GameSummary gameSummary ) {
         setMinimumSize( new Dimension( gameSummary.getWidth(), gameSummary.getHeight() ) );
         setBackground( (id == 1) ? GameSummary.getColorP1() : GameSummary.getColorP2() );
 

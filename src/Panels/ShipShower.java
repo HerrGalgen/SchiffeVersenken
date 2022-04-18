@@ -17,7 +17,7 @@ public class ShipShower extends JPanel {
     JLabel lTwo   = new JLabel();
 
 
-    ShipShower( GameSummary gameSummary, int id ) {
+    public ShipShower( GameSummary gameSummary, int id ) {
         this.gameSummary = gameSummary;
         setLayout( new BoxLayout( this, BoxLayout.Y_AXIS ) );
 

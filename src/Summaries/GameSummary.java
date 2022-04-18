@@ -1,7 +1,6 @@
 package Summaries;
 
 import GameIO.PropertyReader;
-import Panels.GameField;
 import Panels.PausePanel;
 
 import javax.swing.*;
@@ -18,10 +17,10 @@ public class GameSummary extends JFrame {
     private static final Color      COLOR_P2     = new Color( 0x5EB1FF );
     private final        PausePanel pausePanel;
     private              int        pausedPlayer = 0;
-    private final        Properties properties;
-    private final        GameField  player1;
-    private final        GameField  player2;
-    private              int        clickCount   = 0;
+    private final Properties    properties;
+    private final PlayerSummary player1;
+    private final PlayerSummary player2;
+    private       int           clickCount   = 0;
     private              String     status       = "setShips";
 
     /**
@@ -38,8 +37,8 @@ public class GameSummary extends JFrame {
         properties = new PropertyReader().getProperties();
 
         //Initialisiere Panels + Add
-        player1 = new GameField( this, 1 );
-        player2 = new GameField( this, 2 );
+        player1 = new PlayerSummary( this, 1 );
+        player2 = new PlayerSummary( this, 2 );
         pausePanel = new PausePanel( this );
 
         add( player1 );
@@ -154,7 +153,7 @@ public class GameSummary extends JFrame {
         return properties.getProperty( prop );
     }
 
-    public GameField getCurrentPlayer( int id ) {
+    public PlayerSummary getCurrentPlayer( int id ) {
         if ( id == 1 ) return player1;
         else return player2;
     }

@@ -2,6 +2,7 @@ package Panels;
 
 import GameIO.ButtonListener;
 import Summaries.GameSummary;
+import Summaries.PlayerSummary;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -17,25 +18,25 @@ import java.util.Objects;
 public class Playground extends JPanel {
 
     private final JButton[][]               aButtons   = new JButton[11][11];
-    private final GameSummary               gameSummary;
-    private final GameField                 gameField;
-    private       int[][]                   aShips     = new int[aButtons.length - 1][aButtons[0].length - 1];
+    private final GameSummary   gameSummary;
+    private final PlayerSummary playerSummary;
+    private       int[][]       aShips     = new int[aButtons.length - 1][aButtons[0].length - 1];
     private       HashMap<Integer, Integer> shipIDSize = new HashMap<>();
 
 
     /**
-     * @param gameField   current Panels.GameField.
+     * @param playerSummary   current Summaries.PlayerSummary.
      * @param gameSummary Summaries.GameSummary.
      */
-    Playground( GameField gameField, GameSummary gameSummary, int id ) {
+    public Playground( PlayerSummary playerSummary, GameSummary gameSummary, int id ) {
         setLayout( new GridLayout( aButtons.length, aButtons[0].length ) );
         setMinimumSize( new Dimension( 600, 600 ) );
         setVisible( true );
 
         this.gameSummary = gameSummary;
-        this.gameField = gameField;
+        this.playerSummary = playerSummary;
 
-        ButtonListener listener = new ButtonListener(gameSummary, gameField, id);
+        ButtonListener listener = new ButtonListener(gameSummary, playerSummary, id);
 
         //Declare Buttons in Array:
         for (int y = 0; y < aButtons.length; y++)
@@ -76,7 +77,7 @@ public class Playground extends JPanel {
     }
 
     public boolean isWin() {
-        return gameField.getShipShower().getPlacedShips() == 0;
+        return playerSummary.getShipShower().getPlacedShips() == 0;
     }
 
     public boolean shipInArray( int[][] array, int id ) {
@@ -103,7 +104,7 @@ public class Playground extends JPanel {
 
     public void placeShip( int y, int x, int shipSize, int shipID ) {
 
-        if ( gameField.getShipPlacer().isHorizontal() ) {
+        if ( playerSummary.getShipPlacer().isHorizontal() ) {
             for (int i = 0; i < shipSize; i++) {
                 System.out.println( x + " " + y + " ship set" );
                 aShips[y][x] = shipID;
@@ -120,7 +121,7 @@ public class Playground extends JPanel {
                 y--;
             }
         }
-        gameField.getShipPlacer().removeShipCount( shipSize );
+        playerSummary.getShipPlacer().removeShipCount( shipSize );
         markAllOwnShips();
 
     }
@@ -159,7 +160,7 @@ public class Playground extends JPanel {
         boolean placeable;
 
         //ship is in bounds:
-        if ( gameField.getShipPlacer().isHorizontal() )
+        if ( playerSummary.getShipPlacer().isHorizontal() )
             placeable = x + shipSize < aShips.length + 1;
         else
             placeable = y + 1 - shipSize >= 0;
@@ -177,7 +178,7 @@ public class Playground extends JPanel {
         int endPosX;
         int endPosY;
 
-        if ( gameField.getShipPlacer().isHorizontal() ) {
+        if ( playerSummary.getShipPlacer().isHorizontal() ) {
             startPosX = (x <= 0) ? x : x - 1;
             startPosY = (y <= 0) ? y : y - 1;
             endPosX = (x + shipSize + 1 < aShips[y].length + 1) ? x + shipSize : x + shipSize - 1;
