@@ -43,7 +43,7 @@ public class GameSummary extends JFrame {
         player1 = new PlayerSummary( this, 1 );
         player2 = new PlayerSummary( this, 2 );
         pausePanel = new PausePanel( this );
-        winPanel = new WinPanel();
+        winPanel = new WinPanel(this);
 
         add( player1 );
         add( player2 );

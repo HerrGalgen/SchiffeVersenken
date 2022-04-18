@@ -15,7 +15,7 @@ public class PausePanel extends JPanel {
      * @param gameSummary Summaries.GameSummary.
      */
     public PausePanel(GameSummary gameSummary) {
-        setMinimumSize( new Dimension(600,600) );
+        setMinimumSize( new Dimension(gameSummary.getWidth(),gameSummary.getHeight()) );
         setVisible( true );
         setLayout(new GridBagLayout());
 
