@@ -1,5 +1,6 @@
 package Panels;
 
+import GameIO.Actions;
 import GameIO.ShipPlacerListener;
 import Summaries.GameSummary;
 
@@ -41,6 +42,7 @@ public class ShipPlacer extends JPanel {
 
         toggle.addActionListener( listener );
         toggle.setActionCommand( "toggle" );
+        toggle.setFocusable( false );
 
         JButton bNext = new JButton( "NEXT" );
         bNext.setMinimumSize( new Dimension( 100, 100 ) );
@@ -48,6 +50,7 @@ public class ShipPlacer extends JPanel {
         bNext.addActionListener( listener );
         bNext.setBackground( Color.RED );
         bNext.setForeground( Color.WHITE );
+        bNext.setFocusable( false );
 
         setShipCount();
 

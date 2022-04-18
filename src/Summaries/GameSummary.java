@@ -1,5 +1,6 @@
 package Summaries;
 
+import GameIO.Actions;
 import GameIO.PropertyReader;
 import Panels.PausePanel;
 import Panels.WinPanel;
@@ -33,6 +34,10 @@ public class GameSummary extends JFrame {
         setLayout( new CardLayout() );
         setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
         setTitle( "Schiffe-Versenken" );
+
+        addKeyListener( new Actions() );
+        setFocusable( true );
+
 
         setIconImage( new ImageIcon( "src\\pictures\\ship_block.png" ).getImage() );
 

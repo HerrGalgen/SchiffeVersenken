@@ -1,5 +1,6 @@
 package Panels;
 
+import GameIO.Actions;
 import GameIO.ButtonListener;
 import Summaries.GameSummary;
 import Summaries.PlayerSummary;
@@ -46,6 +47,7 @@ public class Playground extends JPanel {
                 aButtons[y][x] = new JButton();
                 aButtons[y][x].setActionCommand(y + "," + x);
                 aButtons[y][x].addActionListener(listener);
+                aButtons[y][x].setFocusable( false );
             }
         //Set Description for First Row:
         for (int i = 1; i < aButtons[0].length; i++) {
