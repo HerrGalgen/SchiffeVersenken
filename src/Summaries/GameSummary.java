@@ -2,6 +2,7 @@ package Summaries;
 
 import GameIO.PropertyReader;
 import Panels.PausePanel;
+import Panels.WinPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,12 +16,14 @@ public class GameSummary extends JFrame {
 
     private static final Color      COLOR_P1     = new Color( 0x5EFF91 );
     private static final Color      COLOR_P2     = new Color( 0x5EB1FF );
-    private final        PausePanel pausePanel;
     private              int        pausedPlayer = 0;
-    private final Properties    properties;
-    private final PlayerSummary player1;
-    private final PlayerSummary player2;
-    private       int           clickCount   = 0;
+    private        final Properties    properties;
+
+    private        final PlayerSummary player1;
+    private        final PlayerSummary player2;
+    private        final PausePanel    pausePanel;
+    private        final WinPanel      winPanel;
+    private              int           clickCount   = 0;
     private              String     status       = "setShips";
 
     /**
@@ -40,10 +43,12 @@ public class GameSummary extends JFrame {
         player1 = new PlayerSummary( this, 1 );
         player2 = new PlayerSummary( this, 2 );
         pausePanel = new PausePanel( this );
+        winPanel = new WinPanel();
 
         add( player1 );
         add( player2 );
         add( pausePanel );
+        add( winPanel );
 
     }
 
@@ -51,13 +56,14 @@ public class GameSummary extends JFrame {
      * initialise the Game.
      */
     public void init() {
-        System.out.println("Game-Status: " + getStatus());
+        System.out.println("-----[ Game-Status: " + getStatus() + " ]-----");
         setMinimumSize( new Dimension( Integer.parseInt(getProperty("width")), Integer.parseInt(getProperty("height")) ) );
         setVisible( true );
 
         player1.setVisible( true );
         player2.setVisible( false );
         pausePanel.setVisible( false );
+        winPanel.setVisible( false );
 
     }
 
@@ -120,7 +126,7 @@ public class GameSummary extends JFrame {
 
         setStatus( "battle" );
 
-        System.out.println( "Game-Status: " + getStatus() );
+        System.out.println( "-----[ Game-Status: " + getStatus() + " ]-----");
     }
 
     //Getter and Setter:
@@ -156,5 +162,14 @@ public class GameSummary extends JFrame {
     public PlayerSummary getCurrentPlayer( int id ) {
         if ( id == 1 ) return player1;
         else return player2;
+    }
+
+    public void setWin(int id) {
+        winPanel.setWin( id );
+
+        player1.setVisible( false );
+        player2.setVisible( false );
+        pausePanel.setVisible( false );
+        winPanel.setVisible( true );
     }
 }

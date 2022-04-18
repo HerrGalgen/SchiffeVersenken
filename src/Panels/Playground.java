@@ -106,7 +106,7 @@ public class Playground extends JPanel {
 
         if ( playerSummary.getShipPlacer().isHorizontal() ) {
             for (int i = 0; i < shipSize; i++) {
-                System.out.println( x + " " + y + " ship set" );
+                System.out.println("--[ y:" + y + " x:" + x + " - Schiff gesetzt ]--" );
                 aShips[y][x] = shipID;
                 aButtons[y + 1][x + 1].setEnabled( false );
                 shipIDSize.put( shipID, shipSize );// ID = Size
@@ -114,7 +114,7 @@ public class Playground extends JPanel {
             }
         } else {
             for (int i = shipSize; i > 0; i--) {
-                System.out.println( x + " " + y + " ship set" );
+                System.out.println("--[ y:" + y + " x:" + x + " - Schiff gesetzt ]--" );
                 aShips[y][x] = shipID;
                 aButtons[y + 1][x + 1].setEnabled( false );
                 shipIDSize.put( shipID, shipSize ); // ID = Size

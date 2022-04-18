@@ -30,7 +30,7 @@ public class ShipPlacerListener implements ActionListener {
         }
         else if(e.getActionCommand().equals("next")) {
             gameSummary.setClickCount( gameSummary.getClickCount() + 1 );
-            System.out.println( "next" );
+            System.out.println( "--[ Spieler " + ((id==1) ? 2 : 1) + " ist am Zug ]--" );
             gameSummary.pauseGame( id );
             gameSummary.getCurrentPlayer( id ).prepareGame();
 

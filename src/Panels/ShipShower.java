@@ -57,7 +57,7 @@ public class ShipShower extends JPanel {
             case 5 -> shipsLeft[3]--;
         }
 
-        System.out.println( "Ship with size " + shipSize + "removed." );
+        System.out.println( "   ---[ Schiff groese " + shipSize + " versenkt ]---" );
 
         setShipsLeft( shipsLeft );
 

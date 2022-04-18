@@ -55,15 +55,17 @@ public class ButtonListener implements ActionListener {
 
         } else if ( gameSummary.getStatus().equals( "battle" ) ) {
 
-            System.out.println( yCord + " " + xCord + " rocketed");
+            System.out.println( "--[ Spieler " + id + " - y:" + yCord + " x:" + xCord + " beschossen ]--");
 
             //Test if ship was clicked:
             if ( playground.getaShips()[yCord][xCord] != 0 ) {
 
                 destroyShip( yCord, xCord );
 
-                if ( playerSummary.getPlayground().isWin() )
-                    System.out.println( "WIN " + id );
+                if ( playerSummary.getPlayground().isWin() ) {
+                    System.out.println( "-----[ Spieler  " + id + " hat gewonnen! ]-----" );
+                    gameSummary.setWin( id );
+                }
 
             } else { // no ship was hit:
                 playground.setButtonIcon( ++yCord, ++xCord, "mine" );
@@ -85,8 +87,6 @@ public class ButtonListener implements ActionListener {
             playerSummary.getShipShower().removeDestroyedShip( playground.getSizeToID( shipID ) );
             playerSummary.getPlayground().markDestroyedShip(-shipID);
         }
-
-        System.out.println( "ship hitted" );
     }
 
 
