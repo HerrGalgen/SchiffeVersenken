@@ -1,5 +1,6 @@
 package Panels;
 
+import GameIO.WinPanListener;
 import Summaries.GameSummary;
 
 import javax.imageio.ImageIO;
@@ -13,11 +14,11 @@ public class WinPanel extends JPanel {
 
     JLabel lWin = new JLabel();
     JLabel lIcon = new JLabel();
+    JButton bReset = new JButton("Reset Game");
 
     public WinPanel( GameSummary gameSummary ) {
 
         setMinimumSize( new Dimension(gameSummary.getWidth(),gameSummary.getHeight()) );
-        setVisible( true );
         setLayout(new GridBagLayout());
 
         //Allgemeine Vars:
@@ -32,16 +33,20 @@ public class WinPanel extends JPanel {
         }
 
         lWin.setFont(new Font("Veranda", Font.BOLD, 30));
-
+        bReset.setActionCommand( "reset" );
+        bReset.addActionListener( new WinPanListener(gameSummary) );
 
         cons.gridx = 0;
         cons.gridy = 0;
         add(lIcon, cons);
 
-        cons.gridx = 0;
         cons.gridy++;
 
         add(lWin, cons);
+
+        cons.gridy++;
+
+        add(bReset, cons);
     }
 
     public void setWin(int id) {

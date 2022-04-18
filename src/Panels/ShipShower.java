@@ -18,6 +18,7 @@ public class ShipShower extends JPanel {
 
 
     public ShipShower( GameSummary gameSummary, int id ) {
+        System.out.println("---[ ShipShower " + id + " erstellt ]---");
         this.gameSummary = gameSummary;
         setLayout( new BoxLayout( this, BoxLayout.Y_AXIS ) );
 

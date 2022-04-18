@@ -29,6 +29,8 @@ public class Playground extends JPanel {
      * @param gameSummary Summaries.GameSummary.
      */
     public Playground( PlayerSummary playerSummary, GameSummary gameSummary, int id ) {
+        System.out.println("---[ Playground " + id + " erstellt ]---");
+
         setLayout( new GridLayout( aButtons.length, aButtons[0].length ) );
         setMinimumSize( new Dimension( 600, 600 ) );
         setVisible( true );

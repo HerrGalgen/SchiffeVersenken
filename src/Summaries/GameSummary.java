@@ -16,14 +16,14 @@ public class GameSummary extends JFrame {
 
     private static final Color      COLOR_P1     = new Color( 0x5EFF91 );
     private static final Color      COLOR_P2     = new Color( 0x5EB1FF );
-    private              int        pausedPlayer = 0;
-    private        final Properties    properties;
+    private int        pausedPlayer = 0;
+    private Properties properties;
 
-    private        final PlayerSummary player1;
-    private        final PlayerSummary player2;
-    private        final PausePanel    pausePanel;
-    private        final WinPanel      winPanel;
-    private              int           clickCount   = 0;
+    private              PlayerSummary player1;
+    private              PlayerSummary player2;
+    private PausePanel pausePanel;
+    private WinPanel   winPanel;
+    private int        clickCount   = 0;
     private              String     status       = "setShips";
 
     /**
@@ -44,26 +44,28 @@ public class GameSummary extends JFrame {
         player2 = new PlayerSummary( this, 2 );
         pausePanel = new PausePanel( this );
         winPanel = new WinPanel(this);
-
-        add( player1 );
-        add( player2 );
-        add( pausePanel );
-        add( winPanel );
-
     }
 
     /**
      * initialise the Game.
      */
     public void init() {
+        status = "setShips";
         System.out.println("-----[ Game-Status: " + getStatus() + " ]-----");
         setMinimumSize( new Dimension( Integer.parseInt(getProperty("width")), Integer.parseInt(getProperty("height")) ) );
         setVisible( true );
+
+        add( player1 );
+        add( player2 );
+        add( pausePanel );
+        add( winPanel );
 
         player1.setVisible( true );
         player2.setVisible( false );
         pausePanel.setVisible( false );
         winPanel.setVisible( false );
+
+        pack();
 
     }
 
@@ -171,5 +173,29 @@ public class GameSummary extends JFrame {
         player2.setVisible( false );
         pausePanel.setVisible( false );
         winPanel.setVisible( true );
+    }
+
+    public void resetGame() {
+        System.out.println("-----[ Spiel wird resettet ]-----");
+
+        clickCount = 0;
+        pausedPlayer = 0;
+
+        remove( player1 );
+        remove( player2 );
+        remove( pausePanel );
+        remove( winPanel );
+
+        //Set Properties from game:
+        properties = new PropertyReader().getProperties();
+
+        //Initialisiere Panels + Add
+        player1 = new PlayerSummary( this, 1 );
+        player2 = new PlayerSummary( this, 2 );
+        pausePanel = new PausePanel( this );
+        winPanel = new WinPanel(this);
+
+        init();
+
     }
 }

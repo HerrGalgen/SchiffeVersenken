@@ -24,6 +24,7 @@ public class PlayerSummary extends JPanel {
      * @param id          The current PlayerID.
      */
     public PlayerSummary( GameSummary gameSummary, int id ) {
+        System.out.println("---[ Spieler " + id + " erstellt ]---");
         setLayout( new GridBagLayout() );
         setMinimumSize( new Dimension( gameSummary.getWidth(), gameSummary.getHeight() ) );
 
