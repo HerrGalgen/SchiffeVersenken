@@ -1,39 +1,28 @@
 package GameIO;
 
 import Summaries.GameSummary;
-import Summaries.PlayerSummary;
 
 import java.awt.event.*;
 
-public class KeyboardListener implements KeyListener {
-
-    private final GameSummary gameSummary;
-    private PlayerSummary player;
-
-    public KeyboardListener(GameSummary gameSummary) {
-        this.gameSummary = gameSummary;
-    }
+public record KeyboardListener(GameSummary gameSummary) implements KeyListener {
 
     @Override
-    public void keyTyped( KeyEvent e ) {
+    public void keyTyped(KeyEvent e) {
 
 
     }
 
     @Override
-    public void keyPressed( KeyEvent e ) {
+    public void keyPressed(KeyEvent e) {
 
-        switch(e.getKeyCode()) {
-            case KeyEvent.VK_R -> {
-                player = gameSummary.getCurrentPlayer(gameSummary.getCurrentPlayerID());
-                player.getShipPlacer().toggleSwitch();
-            }
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_R -> gameSummary.getCurrentPlayer(gameSummary.getCurrentPlayerID()).getShipPlacer().toggleSwitch();
             case KeyEvent.VK_ESCAPE -> System.out.println("ESC");
         }
     }
 
     @Override
-    public void keyReleased( KeyEvent e ) {
+    public void keyReleased(KeyEvent e) {
 
 
     }
