@@ -18,7 +18,7 @@ public record KeyboardListener(GameSummary gameSummary) implements KeyListener {
 
         switch (e.getKeyCode()) {
             case KeyEvent.VK_R -> gameSummary.getCurrentPlayer(gameSummary.getCurrentPlayerID()).getShipPlacer().toggleSwitch();
-            case KeyEvent.VK_ESCAPE -> new Settings(gameSummary);
+            case KeyEvent.VK_ESCAPE -> { if (!gameSummary.isSettingsOpen()) new Settings(gameSummary); }
         }
     }
 

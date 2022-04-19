@@ -17,10 +17,10 @@ import java.util.Objects;
 
 public class Playground extends JPanel {
 
-    private final JButton[][]               aButtons   = new JButton[11][11];
-    private final GameSummary   gameSummary;
-    private final PlayerSummary playerSummary;
-    private       int[][]       aShips     = new int[aButtons.length - 1][aButtons[0].length - 1];
+    private final JButton[][]               aButtons;
+    private final GameSummary               gameSummary;
+    private final PlayerSummary             playerSummary;
+    private       int[][]                   aShips;
     private       HashMap<Integer, Integer> shipIDSize = new HashMap<>();
 
 
@@ -30,6 +30,9 @@ public class Playground extends JPanel {
      */
     public Playground( PlayerSummary playerSummary, GameSummary gameSummary, int id ) {
         System.out.println("---[ Playground " + id + " erstellt ]---");
+
+        aShips     = new int[Integer.parseInt(gameSummary.getProperty("gridy"))][Integer.parseInt(gameSummary.getProperty("gridx"))];
+        aButtons   = new JButton[aShips.length+1][aShips[0].length+1];
 
         setLayout( new GridLayout( aButtons.length, aButtons[0].length ) );
         setMinimumSize( new Dimension( 600, 600 ) );

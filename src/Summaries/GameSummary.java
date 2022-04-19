@@ -15,17 +15,18 @@ import java.util.Properties;
  */
 public class GameSummary extends JFrame {
 
-    private static final Color      COLOR_P1     = new Color( 0x5EFF91 );
-    private static final Color      COLOR_P2     = new Color( 0x5EB1FF );
-    private int        pausedPlayer = 0;
-    private Properties properties;
+    private static final Color          COLOR_P1     = new Color( 0x5EFF91 );
+    private static final Color          COLOR_P2     = new Color( 0x5EB1FF );
+    private int                         pausedPlayer = 0;
+    private              Properties     properties;
 
-    private              PlayerSummary player1;
-    private              PlayerSummary player2;
-    private PausePanel pausePanel;
-    private WinPanel   winPanel;
-    private int        clickCount   = 0;
-    private              String     status       = "setShips";
+    private              PlayerSummary  player1;
+    private              PlayerSummary  player2;
+    private              PausePanel     pausePanel;
+    private              WinPanel       winPanel;
+    private int                         clickCount   = 0;
+    private              String         status       = "setShips";
+    private static       boolean        settingsOpen = false;
 
     /**
      *
@@ -210,5 +211,13 @@ public class GameSummary extends JFrame {
 
         init();
 
+    }
+
+    public boolean isSettingsOpen() {
+        return settingsOpen;
+    }
+
+    public void setSettingsOpen(boolean settingsOpen) {
+        GameSummary.settingsOpen = settingsOpen;
     }
 }

@@ -7,7 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
@@ -29,6 +28,9 @@ public class Settings extends JFrame {
         setVisible(true);
         setMinimumSize(new Dimension(gameSummary.getWidth(), gameSummary.getHeight()));
         setLayout(new GridBagLayout());
+        setTitle("Einstellungen - SchiffeVersenken");
+
+        gameSummary.setSettingsOpen(true);
 
         GridBagConstraints cons = new GridBagConstraints();
 
@@ -53,6 +55,7 @@ public class Settings extends JFrame {
             add(labelNames[index], cons);
 
             cons.gridx++;
+
             //Add Text-Boxes for Settings:
             fieldValues[index] = new JTextField(values[index]);
             fieldValues[index].setFont(new Font("Dialog", Font.PLAIN, 20));
@@ -65,13 +68,12 @@ public class Settings extends JFrame {
         cons.gridx++;
         cons.gridy = 0;
 
-
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 getNewProperties();
                 reader.setProperties(properties);
                 System.out.println("----[ Einstellungen geschlossen ]-----");
-
+                gameSummary.setSettingsOpen(false);
             }
         });
 
