@@ -34,4 +34,14 @@ public class PropertyReader {
     public Properties getProperties() {
         return properties;
     }
+
+    public void setProperties(Properties properties) {
+        this.properties = properties;
+        try {
+            OutputStream output = new FileOutputStream(PATH_IDE);
+            this.properties.store(output, null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
