@@ -8,12 +8,12 @@ import java.awt.event.ActionListener;
 
 public class ShipPlacerListener implements ActionListener {
 
-    ShipPlacer  selectShip;
+    ShipPlacer  shipPlacer;
     GameSummary gameSummary;
     int         id;
 
-    public ShipPlacerListener( ShipPlacer selectShip, GameSummary gameSummary, int id ) {
-        this.selectShip = selectShip;
+    public ShipPlacerListener( ShipPlacer shipPlacer, GameSummary gameSummary, int id ) {
+        this.shipPlacer = shipPlacer;
         this.gameSummary = gameSummary;
         this.id = id;
     }
@@ -26,7 +26,7 @@ public class ShipPlacerListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("toggle")){
-            selectShip.toggleSwitch();
+            shipPlacer.toggleSwitch();
         }
         else if(e.getActionCommand().equals("next")) {
             gameSummary.setClickCount( gameSummary.getClickCount() + 1 );

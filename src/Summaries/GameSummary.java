@@ -35,7 +35,7 @@ public class GameSummary extends JFrame {
         setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
         setTitle( "Schiffe-Versenken" );
 
-        addKeyListener( new KeyboardListener() );
+        addKeyListener( new KeyboardListener(this) );
         setFocusable( true );
 
 
@@ -86,6 +86,14 @@ public class GameSummary extends JFrame {
         player1.setVisible( false );
         player2.setVisible( false );
         pausePanel.setVisible( true );
+    }
+
+    public int getCurrentPlayerID() {
+        if(player1.isVisible())
+            return 1;
+        if(player2.isVisible())
+            return 2;
+        return 0;
     }
 
 
