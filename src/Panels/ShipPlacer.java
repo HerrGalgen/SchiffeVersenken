@@ -187,4 +187,14 @@ public class ShipPlacer extends JPanel {
 
         return ships;
     }
+
+    public void checkShipSizeCount(int shipSize) {
+       switch(shipSize) {
+           case 2 -> { if(countTwo == 0) bThree.setSelected(true); }
+           case 3 -> { if(countThree == 0) bFour.setSelected(true); }
+           case 4 -> { if(countFour == 0) bFive.setSelected(true); }
+       }
+    }
+
+
 }

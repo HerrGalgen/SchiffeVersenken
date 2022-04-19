@@ -50,6 +50,7 @@ public class ButtonListener implements ActionListener {
             if ( playerSummary.getShipPlacer().isAvailable() && playground.isPlaceable( yCord, xCord, playerSummary.getShipPlacer().getSelectedShipSize() ) ) {
                 shipID++;
                 playground.placeShip( yCord, xCord, playerSummary.getShipPlacer().getSelectedShipSize(), shipID );
+                playerSummary.getShipPlacer().checkShipSizeCount(playerSummary.getShipPlacer().getSelectedShipSize());
             }
 
 

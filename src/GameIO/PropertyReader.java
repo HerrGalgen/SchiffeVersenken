@@ -1,10 +1,10 @@
 package GameIO;
 
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 public class PropertyReader {
 
@@ -14,14 +14,13 @@ public class PropertyReader {
      * Reads the properties of the game.
      */
 
-    private static final String PATH_IDE = "game.properties";
-    private static final Path   PATH     = Paths.get("game.properties");
+    private static final String PATH_IDE = "src/game.properties";
+    private static final Path   PATH     = Paths.get("src/game.properties");
 
     public PropertyReader() {
 
-
         try {
-            properties.load(new FileInputStream( String.valueOf( PATH.toAbsolutePath() ) ));
+            properties.load(new FileInputStream(PATH_IDE));
         } catch (IOException e) {
             e.printStackTrace();
         }
