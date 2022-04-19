@@ -1,6 +1,6 @@
 package Summaries;
 
-import GameIO.Actions;
+import GameIO.KeyboardListener;
 import GameIO.PropertyReader;
 import Panels.PausePanel;
 import Panels.WinPanel;
@@ -35,7 +35,7 @@ public class GameSummary extends JFrame {
         setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
         setTitle( "Schiffe-Versenken" );
 
-        addKeyListener( new Actions() );
+        addKeyListener( new KeyboardListener() );
         setFocusable( true );
 
 

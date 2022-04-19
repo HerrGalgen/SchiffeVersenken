@@ -1,6 +1,5 @@
 package Panels;
 
-import GameIO.Actions;
 import GameIO.ShipPlacerListener;
 import Summaries.GameSummary;
 

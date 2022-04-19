@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Actions implements KeyListener {
+public class KeyboardListener implements java.awt.event.KeyListener {
 
     @Override
     public void keyTyped( KeyEvent e ) {

@@ -1,10 +1,8 @@
 package Summaries;
 
-import GameIO.Actions;
 import Panels.Playground;
 import Panels.ShipPlacer;
 import Panels.ShipShower;
-import Summaries.GameSummary;
 
 import javax.swing.*;
 import java.awt.*;

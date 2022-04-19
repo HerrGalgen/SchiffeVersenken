@@ -1,6 +1,5 @@
 package Panels;
 
-import GameIO.Actions;
 import GameIO.ButtonListener;
 import Summaries.GameSummary;
 import Summaries.PlayerSummary;
