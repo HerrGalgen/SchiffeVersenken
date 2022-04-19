@@ -40,6 +40,12 @@ public class ShipPlacer extends JPanel {
 
         bTwo.setSelected( true );
 
+        //Settings for KeyListener:
+        bTwo.setFocusable(false);
+        bThree.setFocusable(false);
+        bFour.setFocusable(false);
+        bFive.setFocusable(false);
+
         toggle.addActionListener( listener );
         toggle.setActionCommand( "toggle" );
         toggle.setFocusable( false );
