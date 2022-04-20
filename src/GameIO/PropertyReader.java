@@ -4,7 +4,6 @@ import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Properties;
-import java.util.stream.Collectors;
 
 public class PropertyReader {
 
@@ -15,7 +14,7 @@ public class PropertyReader {
      */
 
     private static final String PATH_IDE = "src/game.properties";
-    private static final Path   PATH     = Paths.get("src/game.properties");
+    private static final Path   PATH     = Paths.get("src\\game.properties");
 
     public PropertyReader() {
 
@@ -25,8 +24,9 @@ public class PropertyReader {
             e.printStackTrace();
         }
         properties.list( System.out );
-    }
 
+
+    }
     /**
      *
      * @return current Properties

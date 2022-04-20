@@ -114,49 +114,41 @@ public class ShipPlacer extends JPanel {
 
     public void removeShipCount(int shipID) {
 
-        switch(shipID) {
+        switch (shipID) {
             case 5 -> {
                 countFive--;
-                if(countFive == 0)
+                if (countFive == 0)
                     bFive.setEnabled(false);
             }
             case 4 -> {
                 countFour--;
-                if(countFour==0)
+                if (countFour == 0)
                     bFour.setEnabled(false);
             }
             case 3 -> {
                 countThree--;
-                if(countThree == 0)
+                if (countThree == 0)
                     bThree.setEnabled(false);
             }
             case 2 -> {
                 countTwo--;
-                if ( countTwo == 0 )
-                    bTwo.setEnabled( false );
+                if (countTwo == 0)
+                    bTwo.setEnabled(false);
             }
-            default -> throw new IllegalStateException( "Unexpected value: " + shipID );
+            default -> throw new IllegalStateException("Unexpected value: " + shipID);
         }
 
         setShipCount();
     }
 
     public boolean isAvailable() {
-        switch (getSelectedShipSize()) {
-            case 5 -> {
-                return countFive != 0;
-            }
-            case 4 -> {
-                return countFour != 0;
-            }
-            case 3 -> {
-                return countThree != 0;
-            }
-            case 2 -> {
-                return countTwo != 0;
-            }
-        }
-        return false;
+        return switch (getSelectedShipSize()) {
+            case 5 -> countFive != 0;
+            case 4 -> countFour != 0;
+            case 3 -> countThree != 0;
+            case 2 -> countTwo != 0;
+            default -> false;
+        };
     }
 
     public void toggleSwitch() {
@@ -190,9 +182,9 @@ public class ShipPlacer extends JPanel {
 
     public void checkShipSizeCount(int shipSize) {
        switch(shipSize) {
-           case 2 -> { if(countTwo == 0) bThree.setSelected(true); }
-           case 3 -> { if(countThree == 0) bFour.setSelected(true); }
-           case 4 -> { if(countFour == 0) bFive.setSelected(true); }
+           case 2: if(countTwo == 0) bThree.setSelected(true); break;
+           case 3: if(countThree == 0) bFour.setSelected(true); break;
+           case 4: if(countFour == 0) bFive.setSelected(true); break;
        }
     }
 

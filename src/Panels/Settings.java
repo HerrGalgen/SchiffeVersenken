@@ -51,6 +51,8 @@ public class Settings extends JFrame {
             }
         });
 
+        pack();
+
         System.out.println("----[ Einstellungen erscheinen ]-----");
     }
 
