@@ -12,9 +12,7 @@ import java.io.IOException;
 
 public class WinPanel extends JPanel {
 
-    JLabel lWin = new JLabel();
-    JLabel lIcon = new JLabel();
-    JButton bReset = new JButton("Reset Game");
+    private final JLabel lWin = new JLabel();
 
     public WinPanel( GameSummary gameSummary ) {
 
@@ -25,6 +23,7 @@ public class WinPanel extends JPanel {
         GridBagConstraints cons = new GridBagConstraints();
         BufferedImage img;
 
+        JLabel lIcon = new JLabel();
         try {
             img = ImageIO.read(new File("src\\pictures\\win.png"));
             lIcon = new JLabel(new ImageIcon(img));
@@ -33,6 +32,7 @@ public class WinPanel extends JPanel {
         }
 
         lWin.setFont(new Font("Veranda", Font.BOLD, 30));
+        JButton bReset = new JButton("Reset Game");
         bReset.setActionCommand( "reset" );
         bReset.addActionListener( new WinPanListener(gameSummary) );
 

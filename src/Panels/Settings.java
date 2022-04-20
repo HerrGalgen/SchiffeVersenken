@@ -28,11 +28,13 @@ public class Settings extends JFrame {
     public Settings(GameSummary gameSummary) {
 
         setVisible(true);
-        setMinimumSize(new Dimension(gameSummary.getWidth(), gameSummary.getHeight()));
         setLayout(new GridBagLayout());
+
         setTitle("Einstellungen - SchiffeVersenken");
 
         gameSummary.setSettingsOpen(true);
+
+        cbrestart.setSelected(Boolean.parseBoolean(properties.getProperty("restartSettingsClose")));
 
         setupSettings();
 
@@ -93,6 +95,7 @@ public class Settings extends JFrame {
         //Restart on close:
         cons.gridy++;
         cons.gridx = 0;
+        cons.gridwidth = 2;
         add(cbrestart, cons);
     }
 
@@ -101,6 +104,7 @@ public class Settings extends JFrame {
         properties.setProperty("gridy", (String) cbTableSizeY.getSelectedItem());
         properties.setProperty("width", (String) cbGameSizeX.getSelectedItem());
         properties.setProperty("height", (String) cbGameSizeY.getSelectedItem());
+        properties.setProperty("restartSettingsClose", String.valueOf(cbrestart.isSelected()));
 
     }
 }
