@@ -29,7 +29,7 @@ public class PausePanel extends JPanel {
 
 
         try {
-             img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/pictures/win.png")));
+             img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/pictures/boat_big.png")));
              lBoat = new JLabel(new ImageIcon(img));
         } catch (IOException e) {
             e.printStackTrace();
