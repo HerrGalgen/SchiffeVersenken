@@ -60,7 +60,7 @@ public class Playground extends JPanel {
         int charStart = 65;
         //Set Description for First Cols:
         for (int i = 1; i < aButtons.length; i++) {
-            aButtons[i][0].setText(String.valueOf((char) charStart + i - 1));
+            aButtons[i][0].setText(String.valueOf((char) (charStart + i - 1)));
             aButtons[i][0].setEnabled(false);
         }
 
@@ -139,10 +139,10 @@ public class Playground extends JPanel {
     public void setButtonIcon(int y, int x, String iconType) {
         try {
             switch (iconType) {
-                case "bombedBoat" -> aButtons[y][x].setIcon(new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getResource("/pictures/bombedBoat.png")))));
-                case "ship" -> aButtons[y][x].setIcon(new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getResource("/pictures/ship.png")))));
-                case "mine" -> aButtons[y][x].setIcon(new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getResource("/pictures/mine.png")))));
-                case "block" -> aButtons[y][x].setIcon(new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getResource("/pictures/block.png")))));
+                case "bombedBoat": aButtons[y][x].setIcon(new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getResource("/pictures/bombedBoat.png"))))); break;
+                case "ship": aButtons[y][x].setIcon(new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getResource("/pictures/ship.png"))))); break;
+                case "mine": aButtons[y][x].setIcon(new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getResource("/pictures/mine.png"))))); break;
+                case "block": aButtons[y][x].setIcon(new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getResource("/pictures/block.png"))))); break;
             }
         } catch (IOException e) {
             e.printStackTrace();

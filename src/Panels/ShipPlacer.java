@@ -115,40 +115,40 @@ public class ShipPlacer extends JPanel {
     public void removeShipCount(int shipID) {
 
         switch (shipID) {
-            case 5 -> {
+            case 5:
                 countFive--;
                 if (countFive == 0)
                     bFive.setEnabled(false);
-            }
-            case 4 -> {
+            break;
+            case 4:
                 countFour--;
                 if (countFour == 0)
                     bFour.setEnabled(false);
-            }
-            case 3 -> {
+            break;
+            case 3:
                 countThree--;
                 if (countThree == 0)
                     bThree.setEnabled(false);
-            }
-            case 2 -> {
+            break;
+            case 2:
                 countTwo--;
                 if (countTwo == 0)
                     bTwo.setEnabled(false);
-            }
-            default -> throw new IllegalStateException("Unexpected value: " + shipID);
+            break;
+            default: throw new IllegalStateException("Unexpected value: " + shipID);
         }
 
         setShipCount();
     }
 
     public boolean isAvailable() {
-        return switch (getSelectedShipSize()) {
-            case 5 -> countFive != 0;
-            case 4 -> countFour != 0;
-            case 3 -> countThree != 0;
-            case 2 -> countTwo != 0;
-            default -> false;
-        };
+         switch (getSelectedShipSize()) {
+            case 5: return countFive != 0;
+            case 4: return countFour != 0;
+            case 3: return countThree != 0;
+            case 2: return countTwo != 0;
+            default: return false;
+        }
     }
 
     public void toggleSwitch() {

@@ -52,10 +52,10 @@ public class ShipShower extends JPanel {
 
     public void removeDestroyedShip( int shipSize ) {
         switch (shipSize) {
-            case 2 -> shipsLeft[0]--;
-            case 3 -> shipsLeft[1]--;
-            case 4 -> shipsLeft[2]--;
-            case 5 -> shipsLeft[3]--;
+            case 2: shipsLeft[0]--; break;
+            case 3: shipsLeft[1]--; break;
+            case 4: shipsLeft[2]--; break;
+            case 5: shipsLeft[3]--; break;
         }
 
         System.out.println( "   ---[ Schiff groese " + shipSize + " versenkt ]---" );
