@@ -31,7 +31,7 @@ public class Playground extends JPanel {
     public Playground( PlayerSummary playerSummary, GameSummary gameSummary, int id ) {
         System.out.println("---[ Playground " + id + " erstellt ]---");
 
-        aShips     = new int[Integer.parseInt(gameSummary.getProperty("gridy"))][Integer.parseInt(gameSummary.getProperty("gridx"))];
+        aShips     = new int[Integer.parseInt(gameSummary.getProperty("grid"))][Integer.parseInt(gameSummary.getProperty("grid"))];
         aButtons   = new JButton[aShips.length+1][aShips[0].length+1];
 
         setLayout( new GridLayout( aButtons.length, aButtons[0].length ) );

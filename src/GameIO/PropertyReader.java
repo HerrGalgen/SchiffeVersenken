@@ -13,18 +13,17 @@ public class PropertyReader {
      * Reads the properties of the game.
      */
 
-    private static final String PATH_IDE = "src/game.properties";
-    private static final Path   PATH     = Paths.get("src\\game.properties");
+    private static final String PATH = "src/game.properties";
 
     public PropertyReader() {
 
         try {
-            properties.load(new FileInputStream(PATH_IDE));
+            properties.load(new FileInputStream(PATH));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        properties.list( System.out );
 
+        properties.list( System.out );
 
     }
     /**
@@ -38,8 +37,8 @@ public class PropertyReader {
     public void setProperties(Properties properties) {
         this.properties = properties;
         try {
-            OutputStream output = new FileOutputStream(PATH_IDE);
-            this.properties.store(output, null);
+            OutputStream out = new FileOutputStream(PATH);
+            this.properties.store(out, null);
         } catch (Exception e) {
             e.printStackTrace();
         }

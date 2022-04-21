@@ -5,6 +5,9 @@ import Summaries.GameSummary;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 
 /**
  * The Panel show on the Start your own Ships.
@@ -26,12 +29,18 @@ public class ShipPlacer extends JPanel {
 
     private boolean horizontal = true;
 
+    GameSummary gameSummary;
+
     ButtonGroup buttonGroup = new ButtonGroup();
 
     public ShipPlacer( int id, GameSummary gameSummary ) {
         System.out.println("---[ ShipPlayer " + id + " erstellt ]---");
         setMinimumSize( new Dimension( gameSummary.getWidth(), gameSummary.getHeight() ) );
-        setBackground( (id == 1) ? GameSummary.getColorP1() : GameSummary.getColorP2() );
+        setBackground( (id == 1) ?
+                Color.decode(gameSummary.getProperty("p1Color")) :
+                Color.decode(gameSummary.getProperty("p2Color")) );
+
+        this.gameSummary = gameSummary;
 
         initButtons( id );
 
@@ -76,10 +85,21 @@ public class ShipPlacer extends JPanel {
 
         Font rbFont = new Font( "Dialog", Font.BOLD, 15 );
 
-        bFive.setBackground( (id == 1) ? GameSummary.getColorP1() : GameSummary.getColorP2() );
-        bFour.setBackground( (id == 1) ? GameSummary.getColorP1() : GameSummary.getColorP2() );
-        bThree.setBackground( (id == 1) ? GameSummary.getColorP1() : GameSummary.getColorP2() );
-        bTwo.setBackground( (id == 1) ? GameSummary.getColorP1() : GameSummary.getColorP2() );
+        bFive.setBackground( (id == 1) ?
+                Color.decode(gameSummary.getProperty("p1Color")) :
+                Color.decode(gameSummary.getProperty("p2Color")) );
+
+        bFour.setBackground( (id == 1) ?
+                Color.decode(gameSummary.getProperty("p1Color")) :
+                Color.decode(gameSummary.getProperty("p2Color")) );
+
+        bThree.setBackground( (id == 1) ?
+                Color.decode(gameSummary.getProperty("p1Color")) :
+                Color.decode(gameSummary.getProperty("p2Color")) );
+
+        bTwo.setBackground( (id == 1) ?
+                Color.decode(gameSummary.getProperty("p1Color")) :
+                Color.decode(gameSummary.getProperty("p2Color")) );
 
         bFive.setFont( rbFont );
         bFour.setFont( rbFont );

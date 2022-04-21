@@ -15,8 +15,6 @@ import java.util.Properties;
  */
 public class GameSummary extends JFrame {
 
-    private static final Color          COLOR_P1     = new Color( 0x5EFF91 );
-    private static final Color          COLOR_P2     = new Color( 0x5EB1FF );
     private int                         pausedPlayer = 0;
     private              Properties     properties;
 
@@ -161,14 +159,6 @@ public class GameSummary extends JFrame {
 
     public void setStatus( String status ) {
         this.status = status;
-    }
-
-    public static Color getColorP1() {
-        return COLOR_P1;
-    }
-
-    public static Color getColorP2() {
-        return COLOR_P2;
     }
 
     public String getProperty( String prop ) {

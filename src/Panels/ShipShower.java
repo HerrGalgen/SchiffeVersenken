@@ -24,7 +24,9 @@ public class ShipShower extends JPanel {
 
         setMinimumSize( new Dimension( gameSummary.getWidth(), gameSummary.getHeight() ) );
 
-        setBackground( (id == 1) ? GameSummary.getColorP1() : GameSummary.getColorP2() );
+        setBackground( (id == 1) ?
+                Color.decode(gameSummary.getProperty("p1Color")) :
+                Color.decode(gameSummary.getProperty("p2Color")) );
 
         lTwo.setAlignmentX( Component.CENTER_ALIGNMENT );
         lThree.setAlignmentX( Component.CENTER_ALIGNMENT );
