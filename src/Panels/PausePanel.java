@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 public class PausePanel extends JPanel {
 
@@ -28,7 +29,7 @@ public class PausePanel extends JPanel {
 
 
         try {
-             img = ImageIO.read(new File("src\\pictures\\boat_big.png"));
+             img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/pictures/win.png")));
              lBoat = new JLabel(new ImageIcon(img));
         } catch (IOException e) {
             e.printStackTrace();

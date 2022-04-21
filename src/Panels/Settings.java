@@ -32,7 +32,7 @@ public class Settings extends JFrame {
     private Color colorP1 = null;
     private Color colorP2 = null;
 
-    private GameSummary gameSummary;
+    private final GameSummary gameSummary;
 
 
     public Settings(GameSummary gameSummary) {

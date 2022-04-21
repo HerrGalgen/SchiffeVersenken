@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class PropertyReader {
 
-    Properties properties = new Properties();
+    private Properties properties = new Properties();
 
     /**
      * Reads the properties of the game.
@@ -17,11 +17,11 @@ public class PropertyReader {
 
     public PropertyReader() {
 
-        try {
-            properties.load(new FileInputStream(PATH));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            try {
+                properties.load(new FileInputStream(PATH));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
         properties.list( System.out );
 
@@ -37,7 +37,8 @@ public class PropertyReader {
     public void setProperties(Properties properties) {
         this.properties = properties;
         try {
-            OutputStream out = new FileOutputStream(PATH);
+            System.out.println("src" + PATH);
+            OutputStream out = new FileOutputStream("src/game.properties");
             this.properties.store(out, null);
         } catch (Exception e) {
             e.printStackTrace();

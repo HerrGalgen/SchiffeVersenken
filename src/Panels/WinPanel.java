@@ -7,8 +7,8 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 public class WinPanel extends JPanel {
 
@@ -25,7 +25,7 @@ public class WinPanel extends JPanel {
 
         JLabel lIcon = new JLabel();
         try {
-            img = ImageIO.read(new File("src\\pictures\\win.png"));
+            img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/pictures/win.png")));
             lIcon = new JLabel(new ImageIcon(img));
         } catch (IOException e) {
             e.printStackTrace();
