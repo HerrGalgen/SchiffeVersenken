@@ -131,10 +131,14 @@ public class Settings extends JFrame {
     public void changeColor(int playerID) {
 
         if(playerID == 1) {
-            colorP1 = JColorChooser.showDialog(null, "Spielerfarbe - 1", null);
+            colorP1 = JColorChooser.showDialog(null, "Spielerfarbe - 1", Color.decode(gameSummary.getProperty("p1Color")));
+            if(colorP1 == null)
+                colorP1 = Color.decode(gameSummary.getProperty("p1Color"));
             bColorP1.setBackground(colorP1);
         } else {
-            colorP2 = JColorChooser.showDialog(null, "Spielerfarbe - 1", null);
+            colorP2 = JColorChooser.showDialog(null, "Spielerfarbe - 2", Color.decode(gameSummary.getProperty("p2Color")));
+            if(colorP2 == null)
+                colorP2 = Color.decode(gameSummary.getProperty("p2Color"));
             bColorP2.setBackground(colorP2);
         }
 

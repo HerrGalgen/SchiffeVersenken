@@ -21,6 +21,8 @@ public class ShipPlacer extends JPanel {
     private final JRadioButton  bThree = new JRadioButton( "0x Zerstörer (3er)" );
     private final JRadioButton  bTwo   = new JRadioButton( "0x U-Boote (2er)" );
     private final JToggleButton toggle = new JToggleButton( "Horizontal" );
+    private final JButton       bNext  = new JButton( "NEXT" );
+
 
     private int countFive  = 1;
     private int countFour  = 2;
@@ -58,13 +60,13 @@ public class ShipPlacer extends JPanel {
         toggle.setActionCommand( "toggle" );
         toggle.setFocusable( false );
 
-        JButton bNext = new JButton( "NEXT" );
         bNext.setMinimumSize( new Dimension( 100, 100 ) );
         bNext.setActionCommand( "next" );
         bNext.addActionListener( listener );
         bNext.setBackground( Color.RED );
         bNext.setForeground( Color.WHITE );
         bNext.setFocusable( false );
+        bNext.setEnabled(false);
 
         setShipCount();
 
@@ -206,7 +208,10 @@ public class ShipPlacer extends JPanel {
            case 3: if(countThree == 0) bFour.setSelected(true); break;
            case 4: if(countFour == 0) bFive.setSelected(true); break;
        }
+
     }
-
-
+    public void setNextClickable() {
+        if( (1-countFive + 2-countFour + 3-countThree + 4 - countTwo) != 0)
+            bNext.setEnabled(true);
+    }
 }
