@@ -197,11 +197,11 @@ public class Playground extends JPanel {
         }
 
 
-        if ( endPosY > 9 )
-            endPosY = 9;
+        if ( endPosY >= Integer.parseInt(gameSummary.getProperty("grid")) )
+            endPosY = Integer.parseInt(gameSummary.getProperty("grid"))-1;
 
-        if ( endPosX > 9 )
-            endPosX = 9;
+        if ( endPosX >= Integer.parseInt(gameSummary.getProperty("grid")) )
+            endPosX = Integer.parseInt(gameSummary.getProperty("grid"))-1;
 
         // See how many are alive
         for (int xNum = startPosX; xNum <= endPosX; xNum++)

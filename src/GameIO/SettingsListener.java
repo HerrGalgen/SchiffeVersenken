@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class SettingsListener implements ActionListener {
 
-    private Settings settings;
+    private final Settings settings;
 
     public SettingsListener(Settings settings) {
         this.settings = settings;

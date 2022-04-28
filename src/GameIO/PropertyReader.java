@@ -13,7 +13,7 @@ public class PropertyReader {
      * Reads the properties of the game.
      */
 
-    private static final String PATH = "/game.properties";
+    private static final String PATH = "src/game.properties";
 
     public PropertyReader() {
 
