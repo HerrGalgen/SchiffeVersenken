@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 import java.util.Properties;
 
 public class Settings extends JFrame {
@@ -58,7 +59,11 @@ public class Settings extends JFrame {
                 gameSummary.setSettingsOpen(false);
                 if (cbrestart.isSelected()) {
                     gameSummary.dispose();
-                    GameMain.main(new String[2]);
+                    try {
+                        GameMain.main(new String[0]);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                 }
             }
         });
