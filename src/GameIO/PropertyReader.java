@@ -13,7 +13,7 @@ public class PropertyReader {
      * Reads the properties of the game.
      */
 
-    private static final String PATH = "src/game.properties";
+    private static final String PATH = "/game.properties";
 
     public PropertyReader() {
 
@@ -37,8 +37,7 @@ public class PropertyReader {
     public void setProperties(Properties properties) {
         this.properties = properties;
         try {
-            System.out.println("src" + PATH);
-            OutputStream out = new FileOutputStream("src/game.properties");
+            OutputStream out = new FileOutputStream(PATH);
             this.properties.store(out, null);
         } catch (Exception e) {
             e.printStackTrace();
